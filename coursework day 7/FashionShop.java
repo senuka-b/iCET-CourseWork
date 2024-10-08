@@ -941,8 +941,69 @@ public class FashionShop {
         }
     }    
 
+    public static void viewCustomerReports() {
+
+    }
+
     public static void viewReports() {
+        clearConsole();
+
+        String view_reports_string = "\r\n" +
+            "             _____  " +
+            "                    " +
+            " _       \r\n" +
+            "            |  __ \\" +
+            "                    " +
+            " | |      \r\n" +
+            "            | |__) |" +
+            "___ _ __   ___  _ __" +
+            "| |_ ___ \r\n" +
+            "            |  _  //" +
+            " _ \\ \'_ \\ / _ \\|" +
+            " \'__| __/ __|\r\n" +
+            "            | | \\ " +
+            "\\  __/ |_) | (_) | " +
+            "|  | |_\\__ \\\r\n" +
+            "            |_|  \\_" +
+            "\\___| .__/ \\___/|_" +
+            "|   \\__|___/\r\n" +
+            "                    " +
+            "   | |              " +
+            "         \r\n" +
+            "                    " +
+            "   |_|              " +
+            "         \r";
+
+
+        System.out.println(view_reports_string);
+
+        System.out.println("\t    _______________________________________\n");
+
+        System.out.println("\t\t[1] Customer Reports\n");
+        System.out.println("\t\t[2] Item Reports\n");
+        System.out.println("\t\t[3] Orders Reports\n");
+
+        System.out.print("\tEnter option : ");
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                viewCustomerReports();
+                break;
+
+            case 2:
+                break;
+
+            case 3:
+                break;
         
+            default:
+                return;
+        }
+
+
+        viewReports();
+
     }
 
     public static void homePage() {
