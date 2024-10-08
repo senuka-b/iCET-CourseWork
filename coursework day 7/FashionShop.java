@@ -1033,7 +1033,7 @@ public class FashionShop {
 
     }
 
-    public static void displayBestInCustomers() {
+    public static boolean displayBestInCustomers() {
         clearConsole();
 
         String best_in_customers = "\r\n" +
@@ -1095,11 +1095,20 @@ public class FashionShop {
 
         printTable(best_customer_data, false);
 
-        input.next();
+        System.out.print("\tTo access the Main Menu, please enter 0 : ");
+        int choice = input.nextInt();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return displayBestInCustomers();
+
 
     }
 
-    public static void viewCustomerReports() {
+    public static boolean viewCustomerReports() {
         clearConsole();
 
         String view_customer_reports_string = "\r\n" +
@@ -1161,7 +1170,7 @@ public class FashionShop {
 
             switch (choice) {
                 case 1:
-                    displayBestInCustomers();
+                    if(displayBestInCustomers()) return true;
                     break;
 
                 case 2:
@@ -1171,10 +1180,10 @@ public class FashionShop {
                     break;
             
                 default:
-                    return;
+                    return false;
             }
 
-            viewCustomerReports();
+            return viewCustomerReports();
         }   
 
     public static void viewReports() {
@@ -1220,7 +1229,7 @@ public class FashionShop {
 
         switch (choice) {
             case 1:
-                viewCustomerReports();
+                if (viewCustomerReports()) return;
                 break;
 
             case 2:
