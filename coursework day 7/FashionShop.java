@@ -1170,8 +1170,8 @@ public class FashionShop {
 
             switch (choice) {
                 case 1:
-                    if(displayBestInCustomers()) return true;
-                    break;
+                    return displayBestInCustomers();
+                
 
                 case 2:
                     break;
@@ -1180,7 +1180,13 @@ public class FashionShop {
                     break;
             
                 default:
-                    return false;
+                    System.out.print("\n\t\tInvalid Input !\n");
+
+                    boolean yn = yesNoChoice("Do you want to enter an option again? (y/n) : ");
+
+                    if (yn == false) {
+                        return yn;
+                    }
             }
 
             return viewCustomerReports();
@@ -1229,7 +1235,7 @@ public class FashionShop {
 
         switch (choice) {
             case 1:
-                if (viewCustomerReports()) return;
+                 if (viewCustomerReports()) return;
                 break;
 
             case 2:
