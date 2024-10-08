@@ -15,6 +15,8 @@ public class FashionShop {
     public static final int delievering = 1;
     public static final int delievered = 2;
 
+    public static String[] sizes = {"xs", "s", "m", "l", "xl", "xxl"};
+
     public static Scanner input = new Scanner(System.in);
 
     public static boolean yesNoChoice(String text) {
@@ -200,6 +202,16 @@ public class FashionShop {
         return temp_s;
     }
 
+    public static String[][] extendArray(String[][] array, int sub_length) {
+        String[][] temp_i = new String[array.length+1][sub_length];
+
+        for (int i = 0; i < array.length; i++) {
+            temp_i[i] = array[i];
+        }
+
+        return temp_i;
+    }
+
 
     public static void createOrder(String tSize, int quantity) {
         
@@ -324,9 +336,9 @@ public class FashionShop {
         return index;
     }
 
-    public static int[] getCustomerReportData(String phone_number) {
+    public static int[] getQuantityData(String phone_number) {
 
-        String[] sizes = {"xs", "s", "m", "l", "xl", "xxl"};
+        
         int[] data = new int[6];
 
         for (int i = 0; i < customers.length; i++) {
@@ -496,6 +508,7 @@ public class FashionShop {
 
 		// Data end line
 
+        System.out.print("\t\t");
 		for (int i = 0; i < max_length_array.length; i++) {
             System.out.print("+");
 
@@ -625,7 +638,7 @@ public class FashionShop {
 
         if (phone_number != "invalid") {
 
-            int[] customer_quantity_data = getCustomerReportData(phone_number);
+            int[] customer_quantity_data = getQuantityData(phone_number);
 
             int count = 0;
             for (int i = 0; i < customer_quantity_data.length; i++) {
@@ -666,6 +679,17 @@ public class FashionShop {
 
         return false;
     }
+
+    public static boolean isExists(String[] array, String value) {
+        for (int i = 0; i < array.length; i++) {
+            if (value.equals(array[i])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public static int validateOrderID(String orderIDString) {
 
@@ -941,6 +965,140 @@ public class FashionShop {
         }
     }    
 
+    public static int getSum(int[] data) {
+        int total = 0;
+        for (int i = 0; i < data.length; i++) {
+            total += data[i];
+        }
+
+        return total;
+    }
+
+    public static double getTotalAmount(int[] quantity_data) {
+        double total = 0;
+        for (int i = 0; i < quantity_data.length; i++) {
+            total += calculateAmount(sizes[i], quantity_data[i]);
+        }
+
+        return total;
+    }
+
+    public static String[][] getBestCustomerData() {
+        
+        String[] temp_customer = new String[0];
+
+        // [[phone, quantity_sum, total_amount], ...]
+        String[][] data = new String[1][3];
+
+        data[0] = new String[]{"Customer ID", "All QTY", "Amount"};
+
+        int index = 1;
+        for (int i = 0; i < customers.length; i++) {
+            if (isExists(temp_customer, customers[i]) == false) {
+                temp_customer = extendArray(temp_customer, customers[i]);
+
+                int[] quantity_data = getQuantityData(customers[i]);
+
+                data  = extendArray(data, 3);
+
+                data[index][0] = customers[i];
+                data[index][1] = String.format("%d", getSum(quantity_data));
+                data[index][2] = String.format("%.2f", getTotalAmount(quantity_data) );
+                
+                index++;
+            }
+        }
+
+        return data;
+    }
+
+    public static void sort(String[][] data, int sort_index) {
+
+        for(int i = data.length-1; i>0; i--){
+			for(int j=1; j<i; j++){
+
+                double amount_1 = Double.parseDouble(data[j][sort_index]);
+                double amount_2 = Double.parseDouble(data[j+1][sort_index]);
+
+				if(amount_1 < amount_2){
+
+					String[] temp = data[j];
+					data[j] = data[j+1];
+					data[j+1] = temp;
+				}	
+				
+			}
+		}
+
+
+    }
+
+    public static void displayBestInCustomers() {
+        clearConsole();
+
+        String best_in_customers = "\r\n" +
+            "             ____   " +
+            "         _     _____" +
+            "          _____     " +
+            "     _              " +
+            "                  \r" +
+            "\n" +
+            "            |  _ \\ " +
+            "         | |   |_   " +
+            "_|        / ____|   " +
+            "     | |            " +
+            "                   " +
+            "\r\n" +
+            "            | |_) | " +
+            "___  ___| |_    | | " +
+            " _ __   | |    _   _" +
+            " ___| |_ ___  _ __ _" +
+            "__   ___ _ __ ___ \r" +
+            "\n" +
+            "            |  _ < /" +
+            " _ \\/ __| __|   | |" +
+            " | \'_ \\  | |   | |" +
+            " | / __| __/ _ \\| " +
+            "\'_ ` _ \\ / _ \\ \'" +
+            "__/ __|\r\n" +
+            "            | |_) | " +
+            " __/\\__ \\ |_   _| " +
+            "|_| | | | | |___| |_" +
+            "| \\__ \\ || (_) | |" +
+            " | | | |  __/ |  \\_" +
+            "_ \\\r\n" +
+            "            |____/ " +
+            "\\___||___/\\__| |__" +
+            "___|_| |_|  \\_____" +
+            "\\__,_|___/\\__\\___" +
+            "/|_| |_| |_|\\___|_|" +
+            "  |___/\r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                  \r" +
+            "\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                  \r";
+
+        System.out.println(best_in_customers);
+
+        System.out.println("\t    ______________________________________________________________________________________\n");
+
+        String[][] best_customer_data = getBestCustomerData();
+
+        sort(best_customer_data, 2);
+
+        printTable(best_customer_data, false);
+
+        input.next();
+
+    }
+
     public static void viewCustomerReports() {
         clearConsole();
 
@@ -1003,7 +1161,7 @@ public class FashionShop {
 
             switch (choice) {
                 case 1:
-                    
+                    displayBestInCustomers();
                     break;
 
                 case 2:
