@@ -1486,11 +1486,11 @@ public class FashionShop {
             "             |___/  " +
             "                    " +
             "                    " +
-            "  \r\n";
+            "  \r";
 
         System.out.println(sorted_by_amount_string);
 
-        System.out.println("\t    ________________________________________________________________________\n");
+        System.out.println("\t    _________________________________________________________________________________________\n");
 
         String[][] sorted_by_amount_data = getSortedByData("amount");
 
@@ -1643,6 +1643,92 @@ public class FashionShop {
         return viewItemReports();
     }
 
+    
+
+    public static boolean viewOrderReports() {
+
+        String order_report_string = "\r\n" +
+            "            __      " +
+            "___                 " +
+            " ____          _    " +
+            "         _____      " +
+            "                 _  " +
+            "     \r\n" +
+            "            \\ \\   " +
+            " / (_)              " +
+            "  / __ \\        | |" +
+            "           |  __ \\ " +
+            "                    " +
+            "| |      \r\n" +
+            "             \\ \\  " +
+            "/ / _  _____      __" +
+            " | |  | |_ __ __| | " +
+            "___ _ __  | |__) |__" +
+            "_ _ __   ___  _ __| " +
+            "|_ ___ \r\n" +
+            "              \\ \\/" +
+            " / | |/ _ \\ \\ /\\ " +
+            "/ / | |  | | \'__/ _" +
+            "` |/ _ \\ \'__| |  _" +
+            "  // _ \\ \'_ \\ / _" +
+            " \\| \'__| __/ __|\r" +
+            "\n" +
+            "               \\  /" +
+            "  | |  __/\\ V  V / " +
+            " | |__| | | | (_| | " +
+            " __/ |    | | \\ \\ " +
+            " __/ |_) | (_) | |  " +
+            "| |_\\__ \\\r\n" +
+            "                \\/ " +
+            "  |_|\\___| \\_/\\_/" +
+            "    \\____/|_|  \\__" +
+            ",_|\\___|_|    |_|  " +
+            "\\_\\___| .__/ \\___" +
+            "/|_|   \\__|___/\r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                   |" +
+            " |                  " +
+            "     \r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                   |" +
+            "_|                  " +
+            "     \r";
+
+
+        System.out.println(order_report_string);
+
+        System.out.println("\t    _________________________________________________________________\n");
+
+        System.out.println("\t\t[1] All Orders\n");
+        System.out.println("\t\t[2] Orders by Amount\n");
+
+        System.out.print("\tEnter option : ");
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                // return viewAllOrders();
+
+            case 2:
+                //return viewOrdersByAmount();
+
+            default:
+                System.out.print("\n\t\tInvalid Input !\n");
+
+                boolean yn = yesNoChoice("Do you want to enter an option again? (y/n) : ");
+
+                if (yn == false) {
+                    return yn;
+                }
+        }
+
+        return viewOrderReports();
+    }
+
     public static void viewReports() {
         clearConsole();
 
@@ -1694,6 +1780,8 @@ public class FashionShop {
                 break;
 
             case 3:
+                if (viewOrderReports()) return;
+
                 break;
         
             default:
