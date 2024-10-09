@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 public class FashionShop {
 
@@ -295,7 +294,7 @@ public class FashionShop {
 
         System.out.println("\tAmount : " + calculateAmount(tSize, qty));
 
-        boolean choice = yesNoChoice("Do you want to place this order? (y/n)");
+        boolean choice = yesNoChoice("Do you want to place this order? (y/n) : ");
 
         if (choice) {
             
@@ -308,7 +307,7 @@ public class FashionShop {
             System.out.println("\n\n\t\tOrder placed!");
         }
 
-        choice = yesNoChoice("Do you want to place another order? (y/n)");
+        choice = yesNoChoice("Do you want to place another order? (y/n) : ");
 
         if (choice) {
             placeOrder();
@@ -2012,7 +2011,6 @@ public class FashionShop {
             int index = searchIndex(orders, orderID);
 
             int status = statuses[index];
-            int status_copy = status;
 
             if (status == delievered) {
                 System.out.println("\n\t\tCan't change this order status, Order already delievered...!");
@@ -2022,7 +2020,7 @@ public class FashionShop {
                 if (choice) {
 
                     int number = 1;
-                    switch (status_copy) {
+                    switch (status) {
                         case processing:
                             System.out.printf("\n\t\t[%d] %s\n", number++, "Order Delievering");
         
@@ -2184,9 +2182,11 @@ public class FashionShop {
                 break;
             case 5:
                 setOrderStatus();
+
                 break;
             case 6:
                 deleteOrder();
+                
                 break;
             
             default:
