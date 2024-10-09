@@ -1643,9 +1643,100 @@ public class FashionShop {
         return viewItemReports();
     }
 
+    public static String[][] getOrderData(String type) {
+
+        // [[orderId, phone, size, qty, amount, status], ...]
+        String[][] data = new String[orders.length+1][6];
+
+        data[0] = new String[]{"Order ID", "Customer ID", "Size", "QTY", "Amount", "Status"}; 
+
+        for (int i = 0; i < orders.length; i++) {
+            data[i+1][0] = String.format("%s", orders[i]);
+
+            data[i+1][1] = customers[i];
+
+            data[i+1][2] = tsizes[i].toUpperCase();
+
+            data[i+1][3] = String.format("%d", qty[i]);
+
+            data[i+1][4] = String.format("%.2f", calculateAmount(tsizes[i], qty[i]));
+
+            data[i+1][5] = getStatus(statuses[i]);
+
+        }
+
+        sort(data, type == "id" ? 0 : 4);
+
+        for (int i = 1; i < data.length; i++) {
+            data[i][0] = createOrderString(Integer.parseInt(data[i][0]));
+        }
+
+        return data;
+    }
     
+    public static boolean viewAllOrders() {
+        clearConsole();
+
+
+        String view_orders_string = "\r\n" +
+            "            __      " +
+            "___                 " +
+            " ____          _    " +
+            "           \r\n" +
+            "            \\ \\   " +
+            " / (_)              " +
+            "  / __ \\        | |" +
+            "              \r\n" +
+            "             \\ \\  " +
+            "/ / _  _____      __" +
+            " | |  | |_ __ __| | " +
+            "___ _ __ ___ \r\n" +
+            "              \\ \\/" +
+            " / | |/ _ \\ \\ /\\ " +
+            "/ / | |  | | \'__/ _" +
+            "` |/ _ \\ \'__/ __|" +
+            "\r\n" +
+            "               \\  /" +
+            "  | |  __/\\ V  V / " +
+            " | |__| | | | (_| | " +
+            " __/ |  \\__ \\\r\n" +
+            "                \\/ " +
+            "  |_|\\___| \\_/\\_/" +
+            "    \\____/|_|  \\__" +
+            ",_|\\___|_|  |___/\r" +
+            "\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "           \r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "           ";
+
+
+        System.out.println(view_orders_string);
+
+        System.out.println("\t    _____________________________________________________________\n");
+
+
+        String[][] order_data = getOrderData("id");
+
+        printTable(order_data, false);
+
+        System.out.print("\tTo access the Main Menu, please enter 0 : ");
+        int choice = input.nextInt();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return viewAllOrders();
+    }
 
     public static boolean viewOrderReports() {
+        clearConsole();
 
         String order_report_string = "\r\n" +
             "            __      " +
@@ -1701,7 +1792,7 @@ public class FashionShop {
 
         System.out.println(order_report_string);
 
-        System.out.println("\t    _________________________________________________________________\n");
+        System.out.println("\t    ____________________________________________________________________________________________\n");
 
         System.out.println("\t\t[1] All Orders\n");
         System.out.println("\t\t[2] Orders by Amount\n");
@@ -1711,7 +1802,7 @@ public class FashionShop {
 
         switch (choice) {
             case 1:
-                // return viewAllOrders();
+                return viewAllOrders();
 
             case 2:
                 //return viewOrdersByAmount();
