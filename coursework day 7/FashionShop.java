@@ -1735,6 +1735,79 @@ public class FashionShop {
         return viewAllOrders();
     }
 
+    public static boolean viewOrdersByAmount() {
+        clearConsole();
+
+        String orders_by_amount_string = "\r\n" +
+            "              ____  " +
+            "        _           " +
+            "      _             " +
+            "                    " +
+            "                 _  " +
+            " \r\n" +
+            "             / __ \\" +
+            "        | |         " +
+            "      | |           " +
+            "    /\\             " +
+            "                  | " +
+            "|  \r\n" +
+            "            | |  | |" +
+            "_ __ __| | ___ _ __ " +
+            "___  | |__  _   _   " +
+            "  /  \\   _ __ ___  " +
+            " ___  _   _ _ __ | |" +
+            "_ \r\n" +
+            "            | |  | |" +
+            " \'__/ _` |/ _ \\ \'" +
+            "__/ __| | \'_ \\| | " +
+            "| |   / /\\ \\ | \'_" +
+            " ` _ \\ / _ \\| | | " +
+            "| \'_ \\| __|\r\n" +
+            "            | |__| |" +
+            " | | (_| |  __/ |  " +
+            "\\__ \\ | |_) | |_| " +
+            "|  / ____ \\| | | | " +
+            "| | (_) | |_| | | | " +
+            "| |_ \r\n" +
+            "             \\____/" +
+            "|_|  \\__,_|\\___|_|" +
+            "  |___/ |_.__/ \\__," +
+            " | /_/    \\_\\_| |_" +
+            "| |_|\\___/ \\__,_|_" +
+            "| |_|\\__|\r\n" +
+            "                    " +
+            "                    " +
+            "             __/ |  " +
+            "                    " +
+            "                    " +
+            " \r\n" +
+            "                    " +
+            "                    " +
+            "            |___/   " +
+            "                    " +
+            "                    " +
+            " \r";
+
+
+        System.out.println(orders_by_amount_string);
+
+        System.out.println("\t    __________________________________________________________________________________________\n");
+
+        String[][] order_data = getOrderData("amount");
+
+        printTable(order_data, false);
+
+        System.out.print("\tTo access the Main Menu, please enter 0 : ");
+        int choice = input.nextInt();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return viewOrdersByAmount();
+    }
+
     public static boolean viewOrderReports() {
         clearConsole();
 
@@ -1805,7 +1878,7 @@ public class FashionShop {
                 return viewAllOrders();
 
             case 2:
-                //return viewOrdersByAmount();
+                return viewOrdersByAmount();
 
             default:
                 System.out.print("\n\t\tInvalid Input !\n");
