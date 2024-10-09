@@ -495,6 +495,24 @@ public class FashionShop {
                 break;
             }
 
+            // -------------------
+
+            for (int j = 0; j < rows[i].length; j++) {
+				System.out.print("| ");
+
+				for (int k = 0; k < max_length_array[j]-1; k++) {
+					System.out.print(" ");
+				}
+
+
+			}
+
+            System.out.println("|");
+
+            // --------------------
+            System.out.print("\t\t");
+
+
 			for (int j = 0; j < rows[i].length; j++) {
 				System.out.print("| " + rows[i][j]);
 
@@ -508,7 +526,11 @@ public class FashionShop {
 
 		// Data end line
 
-        System.out.print("\t\t");
+        if (lastRowLong == false) {
+            System.out.print("\t\t");
+
+        }
+
 		for (int i = 0; i < max_length_array.length; i++) {
             System.out.print("+");
 
