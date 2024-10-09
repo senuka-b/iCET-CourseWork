@@ -15,7 +15,7 @@ public class FashionShop {
     public static final int delievering = 1;
     public static final int delievered = 2;
 
-    public static String[] sizes = {"xs", "s", "m", "l", "xl", "xxl"};
+    public static String[] sizes = {"XS", "S", "M", "L", "XL", "XXL"};
 
     public static Scanner input = new Scanner(System.in);
 
@@ -320,7 +320,7 @@ public class FashionShop {
         int index = -1;
 
         for (int i = 0; i < array.length; i++) {
-            if (value.equals(array[i])) return i;
+            if (value.toLowerCase().equals(array[i].toLowerCase())) return i;
         }
 
         return index;
@@ -1177,6 +1177,121 @@ public class FashionShop {
 
     }
 
+    public static String[][] getAllCustomerReportData() {
+
+        // [[phone_num, xs, s, ..., total], ...]
+        String[][] data = new String[1][8];
+
+        data[0][0] = "Phone Number";
+
+        for (int i = 0; i < sizes.length; i++) {
+            data[0][i+1] = sizes[i];
+        }
+
+        data[0][7] = "Total";
+
+        String[] temp_customer = new String[0];
+
+        int index = 1;
+        for (int i = 0; i < customers.length; i++) {
+            if (isExists(temp_customer, customers[i]) == false) {
+                temp_customer = extendArray(temp_customer, customers[i]);
+
+                data = extendArray(data, 8);
+
+                data[index][0] = customers[i];
+
+                int[] quantity_data = getQuantityData(customers[i]);
+                for (int j = 0; j < quantity_data.length; j++) {
+                    data[index][j+1] = String.format("%d",quantity_data[j]);
+                }
+
+                data[index][7] = String.format("%.2f",getTotalAmount(quantity_data));
+
+                index++;
+            }
+        }
+
+
+        return data;
+
+    }
+
+    public static boolean allCustomerReport() {
+        clearConsole();
+
+        String all_customer_report_string = "\r\n" +
+            "                    " +
+            "  _ _    _____      " +
+            "    _               " +
+            "               _____" +
+            "                    " +
+            "   _   \r\n" +
+            "                /\\ " +
+            "  | | |  / ____|    " +
+            "    | |             " +
+            "               |  __" +
+            " \\                 " +
+            "    | |  \r\n" +
+            "               /  \\" +
+            "  | | | | |    _   _" +
+            " ___| |_ ___  _ __ _" +
+            "__   ___ _ __  | |__" +
+            ") |___ _ __   ___  _" +
+            " __| |_ \r\n" +
+            "              / /\\ " +
+            "\\ | | | | |   | | |" +
+            " / __| __/ _ \\| \'_" +
+            " ` _ \\ / _ \\ \'__|" +
+            " |  _  // _ \\ \'_ " +
+            "\\ / _ \\| \'__| __|" +
+            "\r\n" +
+            "             / ____ " +
+            "\\| | | | |___| |_| " +
+            "\\__ \\ || (_) | | |" +
+            " | | |  __/ |    | |" +
+            " \\ \\  __/ |_) | (_" +
+            ") | |  | |_ \r\n" +
+            "            /_/    " +
+            "\\_\\_|_|  \\_____\\" +
+            "__,_|___/\\__\\___/|" +
+            "_| |_| |_|\\___|_|  " +
+            "  |_|  \\_\\___| .__" +
+            "/ \\___/|_|   \\__|" +
+            "\r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                    " +
+            "     | |            " +
+            "       \r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                    " +
+            "     |_|            " +
+            "       \r";
+
+        System.out.println(all_customer_report_string);
+
+        System.out.println("\t    _______________________________________________________________________________________________\n");
+
+
+        String[][] all_customer_report_data = getAllCustomerReportData();
+
+        printTable(all_customer_report_data, false);
+
+        System.out.print("\tTo access the Main Menu, please enter 0 : ");
+        int choice = input.nextInt();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return allCustomerReport();
+    }
+
     public static boolean viewCustomerReports() {
         clearConsole();
 
@@ -1245,7 +1360,8 @@ public class FashionShop {
                     return displayCustomers();
 
                 case 3:
-                    break;
+                    return allCustomerReport();
+                    
             
                 default:
                     System.out.print("\n\t\tInvalid Input !\n");
