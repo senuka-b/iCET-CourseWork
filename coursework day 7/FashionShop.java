@@ -1957,6 +1957,118 @@ public class FashionShop {
 
     }
 
+    public static void setOrderStatus() {
+        clearConsole();
+
+        String order_status_string = "\r\n" +
+            "              ____  " +
+            "        _           " +
+            "   _____ _        _ " +
+            "            \r\n" +
+            "             / __ \\" +
+            "        | |         " +
+            "   / ____| |      | " +
+            "|            \r\n" +
+            "            | |  | |" +
+            "_ __ __| | ___ _ __ " +
+            " | (___ | |_ __ _| |" +
+            "_ _   _ ___ \r\n" +
+            "            | |  | |" +
+            " \'__/ _` |/ _ \\ \'" +
+            "__|  \\___ \\| __/ _" +
+            "` | __| | | / __|\r" +
+            "\n" +
+            "            | |__| |" +
+            " | | (_| |  __/ |   " +
+            "  ____) | || (_| | |" +
+            "_| |_| \\__ \\\r\n" +
+            "             \\____/" +
+            "|_|  \\__,_|\\___|_|" +
+            "    |_____/ \\__\\__" +
+            ",_|\\__|\\__,_|___/" +
+            "\r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "            \r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "            \r";
+
+        System.out.println(order_status_string);
+
+        System.out.println("\t    ____________________________________________________________\n");
+
+
+        System.out.print("\tEnter Order ID : ");
+        int orderID = validateOrderID(input.next().toLowerCase());
+
+        if (orderID == -1) {
+            System.out.println("\n\t Invalid ID ! \n");
+        } else {
+            displayOrder(orderID);
+
+            int index = searchIndex(orders, orderID);
+
+            int status = statuses[index];
+            int status_copy = status;
+
+            if (status == delievered) {
+                System.out.println("\n\t\tCan't change this order status, Order already delievered...!");
+            } else {
+                boolean choice = yesNoChoice("Do you want to change this order status? (y/n) : ");
+
+                if (choice) {
+
+                    int number = 1;
+                    switch (status_copy) {
+                        case processing:
+                            System.out.printf("\n\t\t[%d] %s\n", number++, "Order Delievering");
+        
+                        case delievering:
+                            System.out.printf("\n\t\t[%d] %s\n", number, "Order Delievered");
+                    
+                    }
+
+                    int option = 0;
+                    do {
+                        System.out.print("\n\tEnter Option : ");
+                        option = input.nextInt();
+
+                        if (option > number || option <= 0) {
+                            System.out.println("\n\t\t Invalid input ! \n");
+                        }
+
+                    } while (option > number || option <= 0);
+
+                    if (status == delievering) {
+                        statuses[index] = delievered;
+                    } else {
+                        statuses[index] = option;
+                    }
+
+                    System.out.println("\n\t\tStatus updated!");
+                    
+
+                } 
+
+
+            }
+
+
+
+        }
+
+        boolean choice = yesNoChoice("Do you want to change another order status? (y/n) : ");
+        
+        if (choice) {
+            setOrderStatus();
+        }
+
+
+    }
+
     public static void homePage() {
         clearConsole();
 
@@ -2071,7 +2183,7 @@ public class FashionShop {
                 
                 break;
             case 5:
-                
+                setOrderStatus();
                 break;
             case 6:
                 deleteOrder();
