@@ -983,7 +983,7 @@ public class FashionShop {
         return total;
     }
 
-    public static String[][] getBestCustomerData() {
+    public static String[][] getCustomerData() {
         
         String[] temp_customer = new String[0];
 
@@ -1089,7 +1089,7 @@ public class FashionShop {
 
         System.out.println("\t    ______________________________________________________________________________________\n");
 
-        String[][] best_customer_data = getBestCustomerData();
+        String[][] best_customer_data = getCustomerData();
 
         sort(best_customer_data, 2);
 
@@ -1104,6 +1104,75 @@ public class FashionShop {
         System.out.print("\033[0J");
 
         return displayBestInCustomers();
+
+
+    }
+
+    public static boolean displayCustomers() {
+        clearConsole();
+
+        String view_customers_string = "\r\n" +
+            "            __      " +
+            "___                 " +
+            " _____          _   " +
+            "                    " +
+            "         \r\n" +
+            "            \\ \\   " +
+            " / (_)              " +
+            "  / ____|        | |" +
+            "                    " +
+            "           \r\n" +
+            "             \\ \\  " +
+            "/ / _  _____      __" +
+            " | |    _   _ ___| |" +
+            "_ ___  _ __ ___   __" +
+            "_ _ __ ___ \r\n" +
+            "              \\ \\/" +
+            " / | |/ _ \\ \\ /\\ " +
+            "/ / | |   | | | / __" +
+            "| __/ _ \\| \'_ ` _ " +
+            "\\ / _ \\ \'__/ __|" +
+            "\r\n" +
+            "               \\  /" +
+            "  | |  __/\\ V  V / " +
+            " | |___| |_| \\__ \\" +
+            " || (_) | | | | | | " +
+            " __/ |  \\__ \\\r\n" +
+            "                \\/ " +
+            "  |_|\\___| \\_/\\_/" +
+            "    \\_____\\__,_|__" +
+            "_/\\__\\___/|_| |_| " +
+            "|_|\\___|_|  |___/\r" +
+            "\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                    " +
+            "         \r\n" +
+            "                    " +
+            "                    " +
+            "                    " +
+            "                    " +
+            "         \r";
+
+        System.out.println(view_customers_string);
+
+        System.out.println("\t    _____________________________________________________________________________\n");
+
+        String[][] customer_data = getCustomerData();
+
+        printTable(customer_data, false);
+
+        System.out.print("\tTo access the Main Menu, please enter 0 : ");
+        int choice = input.nextInt();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return displayCustomers();
+        
 
 
     }
@@ -1172,9 +1241,8 @@ public class FashionShop {
                 case 1:
                     return displayBestInCustomers();
                 
-
                 case 2:
-                    break;
+                    return displayCustomers();
 
                 case 3:
                     break;
