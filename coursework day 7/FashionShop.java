@@ -1228,7 +1228,7 @@ public class FashionShop {
                     data[index][j+1] = String.format("%d",quantity_data[j]);
                 }
 
-                data[index][7] = String.format("%.2f",getTotalAmount(quantity_data));
+                data[index][7] = String.format("%.2f", getTotalAmount(quantity_data));
 
                 index++;
             }
@@ -1398,6 +1398,251 @@ public class FashionShop {
             return viewCustomerReports();
         }   
 
+    public static String[][] getSortedByData(String type) {
+        String[][] data = new String[7][3];
+
+
+        data[0] = new String[]{"Size", "QTY", "Total Amount"};
+
+        // [[total_qty, sum], ...]
+        double[][] values = new double[6][2];
+
+        String[] temp_customer = new String[0];
+        for (int i = 0; i < customers.length; i++) {
+            if (isExists(temp_customer, customers[i]) == false) {
+                temp_customer = extendArray(temp_customer, customers[i]);
+
+                int[] quantity_data = getQuantityData(customers[i]);
+
+                for (int j = 0; j < quantity_data.length; j++) {
+                     values[j][0] += quantity_data[j];
+                     values[j][1] += calculateAmount(sizes[j], quantity_data[j]);
+                }
+            }
+
+        }
+
+        
+        for (int i = 0; i < values.length; i++) {
+            data[i+1][0] = sizes[i];
+            data[i+1][1] = String.format("%.0f", values[i][0]);
+            data[i+1][2] = String.format("%.2f", values[i][1]);
+        }
+
+        sort(data, type == "qty" ? 1 : 2);
+
+        return data;
+    }
+
+
+    public static boolean viewItemReportByAmount() {
+        clearConsole();
+
+        String sorted_by_amount_string = "\r\n" +
+            "              _____ " +
+            "           _        " +
+            "   _   ____         " +
+            "                    " +
+            "                  _ " +
+            "  \r\n" +
+            "             / ____|" +
+            "          | |       " +
+            "  | | |  _ \\       " +
+            "     /\\            " +
+            "                   |" +
+            " |  \r\n" +
+            "            | (___  " +
+            " ___  _ __| |_ ___  " +
+            "__| | | |_) |_   _  " +
+            "   /  \\   _ __ ___ " +
+            "  ___  _   _ _ __ | " +
+            "|_ \r\n" +
+            "             \\___ " +
+            "\\ / _ \\| \'__| __/" +
+            " _ \\/ _` | |  _ <| " +
+            "| | |   / /\\ \\ | " +
+            "\'_ ` _ \\ / _ \\| |" +
+            " | | \'_ \\| __|\r\n" +
+            "             ____) |" +
+            " (_) | |  | ||  __/ " +
+            "(_| | | |_) | |_| | " +
+            " / ____ \\| | | | | " +
+            "| (_) | |_| | | | | " +
+            "|_ \r\n" +
+            "            |_____/ " +
+            "\\___/|_|   \\__\\__" +
+            "_|\\__,_| |____/ \\_" +
+            "_, | /_/    \\_\\_| " +
+            "|_| |_|\\___/ \\__,_" +
+            "|_| |_|\\__|\r\n" +
+            "                    " +
+            "                    " +
+            "              __/ | " +
+            "                    " +
+            "                    " +
+            "  \r\n" +
+            "                    " +
+            "                    " +
+            "             |___/  " +
+            "                    " +
+            "                    " +
+            "  \r\n";
+
+        System.out.println(sorted_by_amount_string);
+
+        System.out.println("\t    ________________________________________________________________________\n");
+
+        String[][] sorted_by_amount_data = getSortedByData("amount");
+
+        printTable(sorted_by_amount_data, false);;
+
+
+        System.out.print("\tTo access the Main Menu, please enter 0 : ");
+        int choice = input.nextInt();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return viewItemReportByAmount();
+    }
+
+    public static boolean viewItemReportByQTY() {
+        clearConsole();
+
+        String sorted_by_qty_string = "\r\n" +
+            "              _____ " +
+            "           _        " +
+            "   _   ____         " +
+            "  ____ _________    " +
+            " __\r\n" +
+            "             / ____|" +
+            "          | |       " +
+            "  | | |  _ \\       " +
+            "  / __ \\__   __\\ " +
+            "\\   / /\r\n" +
+            "            | (___  " +
+            " ___  _ __| |_ ___  " +
+            "__| | | |_) |_   _  " +
+            "| |  | | | |   \\ \\" +
+            "_/ / \r\n" +
+            "             \\___ " +
+            "\\ / _ \\| \'__| __/" +
+            " _ \\/ _` | |  _ <| " +
+            "| | | | |  | | | |  " +
+            "  \\   /  \r\n" +
+            "             ____) |" +
+            " (_) | |  | ||  __/ " +
+            "(_| | | |_) | |_| | " +
+            "| |__| | | |     | |" +
+            "   \r\n" +
+            "            |_____/ " +
+            "\\___/|_|   \\__\\__" +
+            "_|\\__,_| |____/ \\_" +
+            "_, |  \\___\\_\\ |_|" +
+            "     |_|   \r\n" +
+            "                    " +
+            "                    " +
+            "              __/ | " +
+            "                    " +
+            "   \r\n" +
+            "                    " +
+            "                    " +
+            "             |___/  " +
+            "                    " +
+            "   \r";
+
+        System.out.println(sorted_by_qty_string);
+
+        System.out.println("\t    ________________________________________________________________________\n");
+
+        String[][] sorted_by_qty_data = getSortedByData("qty");
+
+        printTable(sorted_by_qty_data, false);;
+
+
+        System.out.print("\tTo access the Main Menu, please enter 0 : ");
+        int choice = input.nextInt();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return viewItemReportByQTY();
+    }
+
+    public static boolean viewItemReports() {
+        clearConsole();
+
+        String item_reports_string = "\r\n" +
+            "             _____ _" +
+            "                   _" +
+            "____                " +
+            "       _       \r\n" +
+            "            |_   _| " +
+            "|                 | " +
+            " __ \\              " +
+            "       | |      \r\n" +
+            "              | | | " +
+            "|_ ___ _ __ ___   | " +
+            "|__) |___ _ __   ___" +
+            "  _ __| |_ ___ \r\n" +
+            "              | | | " +
+            "__/ _ \\ \'_ ` _ \\ " +
+            " |  _  // _ \\ \'_ " +
+            "\\ / _ \\| \'__| __/" +
+            " __|\r\n" +
+            "             _| |_| " +
+            "||  __/ | | | | | | " +
+            "| \\ \\  __/ |_) | (" +
+            "_) | |  | |_\\__ \\" +
+            "\r\n" +
+            "            |_____|" +
+            "\\__\\___|_| |_| |_|" +
+            " |_|  \\_\\___| .__/" +
+            " \\___/|_|   \\__|__" +
+            "_/\r\n" +
+            "                    " +
+            "                    " +
+            "         | |        " +
+            "               \r\n" +
+            "                    " +
+            "                    " +
+            "         |_|        " +
+            "               \r";
+
+        System.out.println(item_reports_string);
+
+        System.out.println("\t    _________________________________________________________________\n");
+
+        System.out.println("\t\t[1] Best Selling Categories Sorted by QTY\n");
+        System.out.println("\t\t[2] Best Selling Categories Sorted by Amount\n");
+
+        System.out.print("\tEnter option : ");
+        int choice = input.nextInt();
+
+        switch (choice) {
+            case 1:
+                return viewItemReportByQTY();
+
+            case 2:
+                return viewItemReportByAmount();
+
+            default:
+                System.out.print("\n\t\tInvalid Input !\n");
+
+                boolean yn = yesNoChoice("Do you want to enter an option again? (y/n) : ");
+
+                if (yn == false) {
+                    return yn;
+                }
+        }
+
+        return viewItemReports();
+    }
+
     public static void viewReports() {
         clearConsole();
 
@@ -1445,6 +1690,7 @@ public class FashionShop {
                 break;
 
             case 2:
+                if (viewItemReports()) return;
                 break;
 
             case 3:
