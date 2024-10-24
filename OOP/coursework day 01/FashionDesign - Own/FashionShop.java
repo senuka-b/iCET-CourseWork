@@ -4,10 +4,10 @@ public class FashionShop {
     private static Scanner input = new Scanner(System.in);
 
     public static void homePage() {
-        clearConsole();
    
-        
-        int choice = input.nextInt();
+        ConsoleWriter.printHomePage();
+
+        int choice = ConsoleWriter.getIntegerInput();
         
         switch (choice) { 
             case 1:
@@ -47,24 +47,11 @@ public class FashionShop {
     public static void main(String args[]) {
         homePage();
 
-        clearConsole();
+        ConsoleWriter.clearConsole();
 
         System.out.println("Goodbye!");
     }
 
-    public final static void clearConsole() {
-        try {
-            final String os = System.getProperty("os.name");
-                if (os.contains("Windows")) {
-                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-                } else {
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
-                }
-        } catch (final Exception e) {
-                e.printStackTrace();
-                // Handle any exceptions.
-        }
-    }
+   
     
 }

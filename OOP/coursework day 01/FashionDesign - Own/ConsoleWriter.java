@@ -85,6 +85,7 @@ class ConsoleWriter {
         "\n";   
 
     public static void printHomePage() {
+        clearConsole();
 
         System.out.println(fashionShopText);
              
@@ -100,6 +101,21 @@ class ConsoleWriter {
     public static int getIntegerInput() {
         return input.nextInt();
 
+    }
+
+    public final static void clearConsole() {
+        try {
+            final String os = System.getProperty("os.name");
+                if (os.contains("Windows")) {
+                    new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+                } else {
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
+                }
+        } catch (final Exception e) {
+                e.printStackTrace();
+                // Handle any exceptions.
+        }
     }
 
     
