@@ -1004,6 +1004,8 @@ public class FashionShop {
         return total;
     }
 
+
+
     public static String[][] getCustomerData() {
         
         String[] temp_customer = new String[0];
