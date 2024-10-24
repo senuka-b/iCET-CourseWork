@@ -1,6 +1,6 @@
 class Order {
 
-    private static String[] sizes = {"XS", "S", "M", "L", "XL", "XXL"};
+    private static String[] sizes = {"xs", "s", "m", "l", "xl", "xxl"};
 
     private static final int processing = 0;
     private static final int delievering = 1;
@@ -15,10 +15,26 @@ class Order {
         this.orderNumber = orderNumber;
     }
 
+    Order(int orderNumber, String tSize, int qty) {
+        this.orderNumber = orderNumber;
+        this.tSize = tSize;
+        this.qty = qty;
+    }
+
 
     public int getQuantity() {
         return qty;
     }
+
+    public int getQuantity(int tSizeIndex) {
+        if (sizes[tSizeIndex].equals(this.tSize)) {
+            return qty;
+        }
+
+        return 0;
+    }
+
+ 
 
     public double calculateAmount() {
 

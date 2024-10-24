@@ -1,6 +1,8 @@
+import java.util.Arrays;
+
 class Customer {
     private String customerID;
-    private Order[] orders;
+    private Order[] orders = new Order[0];
 
     Customer(String customerID) {
         this.customerID = customerID;
@@ -10,10 +12,14 @@ class Customer {
         int[] data = new int[6];
 
         for (int i = 0; i < customers.length; i++) {
+
+            System.out.println(customers[0].customerID);
+            System.out.println(customers[0].orders);
+
             if(customers[i].customerID.equals(customerID)) {
                 for (int j = 0; j < data.length; j++) {
                     for (Order order : customers[i].orders) {
-                        data[j] += order.getQuantity();
+                        data[j] += order.getQuantity(j);
                     }
                 }
             }
@@ -24,14 +30,24 @@ class Customer {
     }
 
     public static Customer[] placeOrder(Customer[] customers, Order order, String customerID) {
+
         for (int i = 0; i < customers.length; i++) {
-            if (customers[i].customerID == customerID) {
+            if (customers[i].customerID.equals(customerID)) {
+                
                 customers[i].orders = extendOrders(customers[i].orders, order);
-            }   return customers;
+
+                return customers;
+            }
         }
 
         Customer new_customer = new Customer(customerID);
+        new_customer.orders = extendOrders(new_customer.orders, order);
 
+        return extendCustomers(customers, new_customer);
+        
+    }
+
+    private static Customer[] extendCustomers(Customer[] customers, Customer new_customer) {
         Customer[] temp = new Customer[customers.length + 1];
 
         for (int i = 0; i < customers.length; i++) {
@@ -42,10 +58,9 @@ class Customer {
         temp[temp.length-1] = new_customer;
 
         return temp;
-        
     }
 
-    public static Order[] extendOrders(Order[] array, Order final_value) {
+    private static Order[] extendOrders(Order[] array, Order final_value) {
         Order[] temp_o = new Order[array.length+1];
 
         for (int i = 0; i < array.length; i++) {

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class FashionShop {
     private static int orderCount = 0;
     private static Customer[] customers = new Customer[0];
@@ -33,7 +35,9 @@ public class FashionShop {
         String phoneNumber = Customer.validatePhoneNumber();
 
         if (!phoneNumber.equals("invalid")) {
+            Customer.getQuantityData(customers, phoneNumber);
 
+            ConsoleWriter.getStringInput();
         }
 
 
@@ -120,6 +124,15 @@ public class FashionShop {
     }
 
     public static void main(String args[]) {
+        // --- Testing ----
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 10), "0705532339");
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 10), "0705532339");
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "m", 20), "0705532339");
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "l", 40), "0705532339");
+
+        
+
+
         homePage();
 
         ConsoleWriter.clearConsole();
