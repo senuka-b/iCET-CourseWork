@@ -2,6 +2,8 @@
 
 ## Classes:
 
-- TextArt
-    - Contains all the ASCII Art 
+-  ConsolePrinter
+    - Contains all the ASCII Art
+    - Prints each page specifically
+    - Returns inputs 
 - 
