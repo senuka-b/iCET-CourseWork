@@ -1,9 +1,42 @@
-import java.util.*;
 public class FashionShop {
 
-    private static Scanner input = new Scanner(System.in);
+    private static void deleteOrder() {
 
-    public static void homePage() {
+        ConsoleWriter.printDeleteOrderPage();
+
+    }
+
+    private static void setOrderStatus() {
+
+        ConsoleWriter.printSetOrderStatusPage();
+
+    }
+
+    private static void viewReports() {
+
+        ConsoleWriter.printViewReportPage();
+
+    }
+
+    private static void searchOrder() {
+
+        ConsoleWriter.printSearchOrderPage();
+
+    }
+
+    private static void searchCustomer() {
+        
+        ConsoleWriter.printSearchCustomerPage();
+    }
+
+    private static void placeOrder() {
+
+        ConsoleWriter.printPlaceOrderPage();
+
+
+    }
+
+    private static void homePage() {
    
         ConsoleWriter.printHomePage();
 
@@ -11,27 +44,27 @@ public class FashionShop {
         
         switch (choice) { 
             case 1:
-                //laceOrder();
+                placeOrder();
                 
                 break;
             case 2:
-                //searchCustomer();    
+                searchCustomer();    
 
                 break;
             case 3:
-                //searchOrder();
+                searchOrder();
 
                 break;
             case 4:
-                //viewReports();
+                viewReports();
                 
                 break;
             case 5:
-                //setOrderStatus();
+                setOrderStatus();
 
                 break;
             case 6:
-                //deleteOrder();
+                deleteOrder();
                 
                 break;
             
