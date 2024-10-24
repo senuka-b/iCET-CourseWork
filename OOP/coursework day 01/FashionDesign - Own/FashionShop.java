@@ -35,7 +35,9 @@ public class FashionShop {
         String phoneNumber = Customer.validatePhoneNumber();
 
         if (!phoneNumber.equals("invalid")) {
-            Customer.getQuantityData(customers, phoneNumber);
+            int[] quantityData = Customer.getQuantityData(customers, phoneNumber);
+
+            
 
             ConsoleWriter.getStringInput();
         }
