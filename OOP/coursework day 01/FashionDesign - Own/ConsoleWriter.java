@@ -368,6 +368,20 @@ class ConsoleWriter {
 
     }
 
+    public static String getStringInput() {
+        return input.next();
+    }
+
+    public static boolean yesNoChoice(String text) {
+
+        System.out.print("\n\n\t" + text);
+        char choice = getStringInput().toLowerCase().charAt(0);
+
+        return choice == 'y' ? true : false;
+
+    }
+
+
     public final static void clearConsole() {
         try {
             final String os = System.getProperty("os.name");

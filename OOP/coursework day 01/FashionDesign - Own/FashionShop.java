@@ -1,4 +1,6 @@
 public class FashionShop {
+    private static int orderCount = 0;
+    private static Customer[] customers = new Customer[0];
 
     private static void deleteOrder() {
 
@@ -32,6 +34,40 @@ public class FashionShop {
     private static void placeOrder() {
 
         ConsoleWriter.printPlaceOrderPage();
+
+        Order order = new Order(orderCount+1);
+
+        System.out.println("\tOrder ID : " + order.createOrderString());
+
+        String phoneNumber = Customer.validatePhoneNumber();
+        System.out.println();
+
+        if (phoneNumber.equals("none")) return;
+
+        order.validateTSize();
+        System.out.println();
+
+        order.validateQty();
+        System.out.println();
+
+        System.out.println("\tAmount : " + order.calculateAmount());
+
+        boolean choice = ConsoleWriter.yesNoChoice("Do you want to place this order? (y/n) : ");
+
+        if (choice) {
+            orderCount++;
+
+            customers = Customer.placeOrder(customers, order, phoneNumber);
+
+            System.out.println("\n\n\t\tOrder placed!");
+
+        }
+
+        choice = ConsoleWriter.yesNoChoice("Do you want to place another order? (y/n) : ");
+
+        if (choice) {
+            placeOrder();
+        }
 
 
     }
