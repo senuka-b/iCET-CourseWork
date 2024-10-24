@@ -6,6 +6,23 @@ class Customer {
         this.customerID = customerID;
     }
     
+    public static int[] getQuantityData(Customer[] customers, String customerID) {
+        int[] data = new int[6];
+
+        for (int i = 0; i < customers.length; i++) {
+            if(customers[i].customerID.equals(customerID)) {
+                for (int j = 0; j < data.length; j++) {
+                    for (Order order : customers[i].orders) {
+                        data[j] += order.getQuantity();
+                    }
+                }
+            }
+        }
+
+
+        return data;
+    }
+
     public static Customer[] placeOrder(Customer[] customers, Order order, String customerID) {
         for (int i = 0; i < customers.length; i++) {
             if (customers[i].customerID == customerID) {
@@ -44,11 +61,12 @@ class Customer {
 
     public static String validatePhoneNumber() {
 
-        System.out.print("\tEnter Customer Phone Number : ");
+        System.out.print("\n\tEnter Customer Phone Number : ");
         String phoneNumber = ConsoleWriter.getStringInput();
         
         if (phoneNumber.length() == 10 && phoneNumber.charAt(0) == '0' ) {
            
+            System.out.println();
             return phoneNumber;
         }
 
@@ -58,7 +76,7 @@ class Customer {
 
         if (choice) {
 
-            System.out.print("\033[6A");
+            System.out.print("\033[7A");
             System.out.print("\033[0J");
 
             return validatePhoneNumber();

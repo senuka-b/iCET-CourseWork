@@ -16,6 +16,10 @@ class Order {
     }
 
 
+    public int getQuantity() {
+        return qty;
+    }
+
     public double calculateAmount() {
 
         double unit_price = 0;
@@ -57,6 +61,9 @@ class Order {
         int quantity = ConsoleWriter.getIntegerInput();
 
         if (quantity > 0) {
+
+            System.out.println();
+
             this.qty = quantity;
             return;
         }

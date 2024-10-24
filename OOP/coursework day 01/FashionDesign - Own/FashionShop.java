@@ -29,6 +29,14 @@ public class FashionShop {
     private static void searchCustomer() {
         
         ConsoleWriter.printSearchCustomerPage();
+
+        String phoneNumber = Customer.validatePhoneNumber();
+
+        if (!phoneNumber.equals("invalid")) {
+
+        }
+
+
     }
 
     private static void placeOrder() {
@@ -40,7 +48,6 @@ public class FashionShop {
         System.out.println("\tOrder ID : " + order.createOrderString());
 
         String phoneNumber = Customer.validatePhoneNumber();
-        System.out.println();
 
         if (phoneNumber.equals("none")) return;
 
@@ -48,7 +55,6 @@ public class FashionShop {
         System.out.println();
 
         order.validateQty();
-        System.out.println();
 
         System.out.println("\tAmount : " + order.calculateAmount());
 
