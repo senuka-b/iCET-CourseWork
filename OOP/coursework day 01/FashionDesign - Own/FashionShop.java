@@ -16,6 +16,34 @@ public class FashionShop {
 
     }
 
+    private static boolean viewOrdersByAmount() {
+        return true;
+    }
+
+    private static boolean viewAllOrders() {
+        return true;
+    }
+
+    private static boolean viewOrderReports() {
+        return true;
+    }
+
+    private static boolean viewItemReportByAmount() {
+        return true;
+    }
+
+    private static boolean viewItemReportByQTY() {
+        return true;
+    }
+
+    private static boolean viewItemReports() {
+        return true;
+    }
+
+    private static boolean displayAllCustomerReport() {
+        return true;
+    }
+
     private static boolean displayCustomers() {
 
         ConsoleWriter.printViewCustomers();
@@ -70,8 +98,7 @@ public class FashionShop {
                 return displayCustomers();
 
             case 3:
-                // return allCustomerReport();
-                
+                return displayAllCustomerReport();                
         
             default:
                 System.out.print("\n\t\tInvalid Input !\n");
@@ -100,8 +127,17 @@ public class FashionShop {
                 
                 break;
         
-            default:
+            case 2:
+                if (viewItemReports()) return;
                 break;
+
+            case 3:
+                if (viewOrderReports()) return;
+
+                break;
+        
+            default:
+                return;
         }
 
     }
