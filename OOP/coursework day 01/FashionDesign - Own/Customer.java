@@ -7,6 +7,16 @@ class Customer {
     Customer(String customerID) {
         this.customerID = customerID;
     }
+
+    public static boolean isExists(Customer[] customers, String phoneNumber) {
+        for (Customer customer : customers) {
+            if (customer.customerID.equals(phoneNumber)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
     
     public static int[] getQuantityData(Customer[] customers, String customerID) {
         int[] data = new int[6];

@@ -5,6 +5,8 @@ class Table {
     private boolean lastRowLong = false;
     private int[] maxLengthArray;
 
+    private boolean isEmpty = false;
+
     private static String[] searchCustomerHeader = new String[]{"Sizes", "QTY", "Amount"};
 
     Table(String[][] rows, boolean lastRowLong) {
@@ -20,14 +22,12 @@ class Table {
         createMaxLengthArray();
     }
 
-    private static String[][] extendRows(String[][]rows) {
-        String[][] extendedRows = new String[rows.length + 1][rows[0].length];
+    Table() {
+        this.isEmpty = true;
+    }
 
-        for (int i = 1; i < extendedRows.length-1; i++) {
-            extendedRows[i] = rows[i];
-        }
-
-        return extendedRows;
+    public boolean getIsEmpty() {
+        return this.isEmpty;
     }
 
     private void createMaxLengthArray() {
@@ -208,6 +208,12 @@ class Table {
     }
 
     public void print() {
+
+        if (this.isEmpty) {
+            System.out.println("Table is empty!");
+            return;
+        } 
+
         printHeaderLine();
 
         printHeaderValues();
@@ -224,6 +230,10 @@ class Table {
     }
 
     public static Table createSearchCustomerTable(Customer[] customers, String phoneNumber) {
+
+        if (!Customer.isExists(customers, phoneNumber)) {
+            return new Table(); // Return empty table
+        }
 
         int[] quantityData = Customer.getQuantityData(customers, phoneNumber);
 

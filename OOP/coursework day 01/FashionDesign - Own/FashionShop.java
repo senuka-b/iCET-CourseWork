@@ -34,13 +34,21 @@ public class FashionShop {
 
         String phoneNumber = Customer.validatePhoneNumber();
 
-        if (!phoneNumber.equals("invalid")) {
+        Table searchCustomerTable = Table.createSearchCustomerTable(customers, phoneNumber);
 
-            Table searchCustomerTable = Table.createSearchCustomerTable(customers, phoneNumber);
+        if (!phoneNumber.equals("invalid") && !searchCustomerTable.getIsEmpty()) {
 
             searchCustomerTable.print();
-            
-            ConsoleWriter.getStringInput();
+                        
+        } else {
+            System.out.println("\n\n\t\tInvalid input ! \n");
+
+        }
+
+        boolean choice = ConsoleWriter.yesNoChoice("Do you want to search another customer report?  (y/n) : ");
+
+        if (choice) {
+            searchCustomer();
         }
 
 
@@ -70,6 +78,8 @@ public class FashionShop {
         if (choice) {
             orderCount++;
 
+            // Would return an array with a new customer if the customer is new, or 
+            // update the existing customer.
             customers = Customer.placeOrder(customers, order, phoneNumber);
 
             System.out.println("\n\n\t\tOrder placed!");
