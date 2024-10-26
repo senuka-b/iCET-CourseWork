@@ -16,6 +16,27 @@ public class FashionShop {
 
     }
 
+    private static boolean displayBestInCustomers() {
+
+        ConsoleWriter.printBestInCustomers();
+
+        Table bestInCustomersTable = Table.createBestInCustomersTable(customers);
+
+        bestInCustomersTable.print();
+
+
+        System.out.print("\n\tTo access the Main Menu, please enter 0 : ");
+        int choice = ConsoleWriter.getIntegerInput();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return displayBestInCustomers();
+
+    }
+
     private static boolean viewCustomerReports() {
 
         ConsoleWriter.printViewCustomerReportPage();
@@ -25,7 +46,7 @@ public class FashionShop {
 
         switch (choice) {
             case 1:
-                //return displayBestInCustomers();
+                return displayBestInCustomers();
             
             case 2:
                 //return displayCustomers();
@@ -216,16 +237,16 @@ public class FashionShop {
 
     public static void main(String args[]) {
         // --- Testing ----
-        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 10), "0705532339");
-        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 10), "0705532339");
-        customers = Customer.placeOrder(customers, new Order(++orderCount, "m", 20), "0705532339");
-        customers = Customer.placeOrder(customers, new Order(++orderCount, "l", 40), "0705532339");
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 10), "0705532339"); // 6000
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 10), "0705532339"); // 6000
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "m", 20), "0705532339"); // 18000
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "l", 40), "0705532339"); // 40000 -> 70000
 
-        customers = Customer.placeOrder(customers, new Order(++orderCount, "xxl", 100), "0111111111");
-        customers = Customer.placeOrder(customers, new Order(++orderCount, "m", 5), "0111111111");
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "xxl", 100), "0111111111"); // 120000
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "m", 5), "0111111111"); // 4500 -> 124500
 
-        customers = Customer.placeOrder(customers, new Order(++orderCount, "s", 30), "0222222222");
-        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 50), "0222222222");
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "s", 30), "0222222222"); // 24000
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 50), "0222222222"); // 30000 -> 54000
         
 
 

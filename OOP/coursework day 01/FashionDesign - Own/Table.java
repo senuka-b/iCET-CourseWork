@@ -8,6 +8,7 @@ class Table {
     private boolean isEmpty = false;
 
     private static String[] searchCustomerHeader = new String[]{"Sizes", "QTY", "Amount"};
+    private static String[] bestInCustomersHeader = new String[]{"Customer ID", "All QTY", "Amount"};
 
     Table(String[][] rows, boolean lastRowLong) {
         this.rows = rows;
@@ -210,7 +211,7 @@ class Table {
     public void print() {
 
         if (this.isEmpty) {
-            System.out.println("Table is empty!");
+            System.out.println("\t\tTable is empty!");
             return;
         } 
 
@@ -227,6 +228,25 @@ class Table {
         if (lastRowLong) {
             printLastRow();
         }
+    }
+
+    private static void sort(String[][] data, int sort_index) {
+
+        for(int i = data.length-1; i>0; i--){
+			for(int j=1; j<i; j++){
+
+                double amount_1 = Double.parseDouble(data[j][sort_index]);
+                double amount_2 = Double.parseDouble(data[j+1][sort_index]);
+
+				if(amount_1 < amount_2){
+
+					String[] temp = data[j];
+					data[j] = data[j+1];
+					data[j+1] = temp;
+				}	
+				
+			}
+		}
     }
 
     public static Table createSearchCustomerTable(Customer[] customers, String phoneNumber) {
@@ -268,6 +288,41 @@ class Table {
         Table table = new Table(customerReportRows, true);
 
         return table;
+    }
+
+
+    public static Table createBestInCustomersTable(Customer[] customers) {
+
+        if (customers.length == 0) return new Table(); // No Customers
+
+        String[][] bestInCustomersRows = new String[customers.length + 1][3];
+
+        bestInCustomersRows[0] = bestInCustomersHeader;
+
+        for (int i = 0; i < customers.length; i++) {
+            Customer currentCustomer = customers[i];
+
+            int[] quantityData = Customer.getQuantityData(customers, currentCustomer.getCustomerID());
+
+            double totalAmount = 0;
+            int totalQuantities = 0;
+
+            for (int j = 0; j < quantityData.length; j++) {
+                totalQuantities += quantityData[j];
+                totalAmount += Order.calculateAmount(Order.getSizeArray()[j], quantityData[j]);
+            }
+
+            bestInCustomersRows[i+1][0] = currentCustomer.getCustomerID();
+            bestInCustomersRows[i+1][1] = String.format("%d", totalQuantities);
+            bestInCustomersRows[i+1][2] = String.format("%.2f", totalAmount);
+        }
+
+        sort(bestInCustomersRows, 2); // Sort in decending order with 'amount' value
+
+        Table bestInCustomersTable = new Table(bestInCustomersRows);
+
+        return bestInCustomersTable;
+
     }
 
   

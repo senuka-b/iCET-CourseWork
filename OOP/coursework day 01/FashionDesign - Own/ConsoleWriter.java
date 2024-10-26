@@ -339,7 +339,54 @@ class ConsoleWriter {
         "          |_|       " +
         "                \r";
 
-
+    static String bestInCustomersString = "\r\n" +
+        "             ____   " +
+        "         _     _____" +
+        "          _____     " +
+        "     _              " +
+        "                  \r" +
+        "\n" +
+        "            |  _ \\ " +
+        "         | |   |_   " +
+        "_|        / ____|   " +
+        "     | |            " +
+        "                   " +
+        "\r\n" +
+        "            | |_) | " +
+        "___  ___| |_    | | " +
+        " _ __   | |    _   _" +
+        " ___| |_ ___  _ __ _" +
+        "__   ___ _ __ ___ \r" +
+        "\n" +
+        "            |  _ < /" +
+        " _ \\/ __| __|   | |" +
+        " | \'_ \\  | |   | |" +
+        " | / __| __/ _ \\| " +
+        "\'_ ` _ \\ / _ \\ \'" +
+        "__/ __|\r\n" +
+        "            | |_) | " +
+        " __/\\__ \\ |_   _| " +
+        "|_| | | | | |___| |_" +
+        "| \\__ \\ || (_) | |" +
+        " | | | |  __/ |  \\_" +
+        "_ \\\r\n" +
+        "            |____/ " +
+        "\\___||___/\\__| |__" +
+        "___|_| |_|  \\_____" +
+        "\\__,_|___/\\__\\___" +
+        "/|_| |_| |_|\\___|_|" +
+        "  |___/\r\n" +
+        "                    " +
+        "                    " +
+        "                    " +
+        "                    " +
+        "                  \r" +
+        "\n" +
+        "                    " +
+        "                    " +
+        "                    " +
+        "                    " +
+        "                  \r";
 
     public static void printHomePage() {
         clearConsole();
@@ -382,6 +429,15 @@ class ConsoleWriter {
 
     }
 
+    public static void printBestInCustomers() {
+        clearConsole();
+
+        System.out.println(bestInCustomersString);
+
+        System.out.println("\t    ______________________________________________________________________________________\n");
+
+    }
+
     public static void printViewCustomerReportPage() {
         clearConsole();
 
@@ -399,6 +455,12 @@ class ConsoleWriter {
         clearConsole();
 
         System.out.println(viewReportsString);
+        
+        System.out.println("\t    _______________________________________\n");
+
+        System.out.println("\t\t[1] Customer Reports\n");
+        System.out.println("\t\t[2] Item Reports\n");
+        System.out.println("\t\t[3] Orders Reports\n");
 
         System.out.println("\t    _______________________________________\n");
 
