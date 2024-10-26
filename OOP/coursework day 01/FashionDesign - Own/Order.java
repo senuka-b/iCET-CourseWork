@@ -11,6 +11,8 @@ class Order {
     private String tSize;
     private int qty;
 
+    private int status;
+
     Order(int orderNumber) {
         this.orderNumber = orderNumber;
     }
@@ -19,6 +21,9 @@ class Order {
         this.orderNumber = orderNumber;
         this.tSize = tSize;
         this.qty = qty;
+
+        this.status = processing;
+
     }
 
 
@@ -34,7 +39,13 @@ class Order {
         return 0;
     }
 
- 
+    public static String[] getSizeArray() {
+        return sizes;
+    }
+
+    public static double calculateAmount(String tSize, int qty) {
+        return new Order(0, tSize, qty).calculateAmount();
+    }
 
     public double calculateAmount() {
 

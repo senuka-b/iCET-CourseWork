@@ -35,10 +35,11 @@ public class FashionShop {
         String phoneNumber = Customer.validatePhoneNumber();
 
         if (!phoneNumber.equals("invalid")) {
-            int[] quantityData = Customer.getQuantityData(customers, phoneNumber);
 
+            Table searchCustomerTable = Table.createSearchCustomerTable(customers, phoneNumber);
+
+            searchCustomerTable.print();
             
-
             ConsoleWriter.getStringInput();
         }
 
@@ -132,6 +133,11 @@ public class FashionShop {
         customers = Customer.placeOrder(customers, new Order(++orderCount, "m", 20), "0705532339");
         customers = Customer.placeOrder(customers, new Order(++orderCount, "l", 40), "0705532339");
 
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "xxl", 100), "0111111111");
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "m", 5), "0111111111");
+
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "s", 30), "0222222222");
+        customers = Customer.placeOrder(customers, new Order(++orderCount, "xs", 50), "0222222222");
         
 
 

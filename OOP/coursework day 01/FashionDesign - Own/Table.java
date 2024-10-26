@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class Table {
     private String[][] rows;
     private boolean lastRowLong = false;
@@ -6,14 +8,14 @@ class Table {
     private static String[] searchCustomerHeader = new String[]{"Sizes", "QTY", "Amount"};
 
     Table(String[][] rows, boolean lastRowLong) {
-        this.rows = extendRows(rows);
+        this.rows = rows;
         this.lastRowLong = lastRowLong;
 
         createMaxLengthArray();
     }
 
     Table(String[][] rows) {
-        this.rows = extendRows(rows);
+        this.rows = rows;
 
         createMaxLengthArray();
     }
@@ -32,6 +34,7 @@ class Table {
           // Find maximum length string in each column -> Make space according to that
 
         maxLengthArray = new int[rows[0].length+1];
+
     
         for (int i = 0; i < rows[0].length; i++) {
             int max_length = 0;
@@ -204,7 +207,7 @@ class Table {
 
     }
 
-    private void printTable() {
+    public void print() {
         printHeaderLine();
 
         printHeaderValues();
@@ -220,7 +223,42 @@ class Table {
         }
     }
 
- 
+    public static Table createSearchCustomerTable(Customer[] customers, String phoneNumber) {
+
+        int[] quantityData = Customer.getQuantityData(customers, phoneNumber);
+
+        String[][] customerReportRows = new String[8][3];
+        customerReportRows[0] = searchCustomerHeader;
+
+        double total = 0;
+        for (int i = 1; i < customerReportRows.length-1; i++) {
+            for (int j = 0; j < customerReportRows[i].length; j++) {
+                String value = "";
+                switch (j) {
+                    case 0:
+                        value = Order.getSizeArray()[i-1];
+                        break;
+                
+                    case 1:
+                        value = String.format("%d", quantityData[i-1]);
+                        break;
+
+                    case 2:
+                        value = String.format("%.2f", Order.calculateAmount(Order.getSizeArray()[i-1], quantityData[i-1]));
+                        total += Order.calculateAmount(Order.getSizeArray()[i-1], quantityData[i-1]);
+                        break;
+                }
+
+                customerReportRows[i][j] = value;
+            }
+        }
+
+        customerReportRows[customerReportRows.length-1] = new String[]{"Total Amount", String.format("%.2f", total)};
+
+        Table table = new Table(customerReportRows, true);
+
+        return table;
+    }
 
     
 }

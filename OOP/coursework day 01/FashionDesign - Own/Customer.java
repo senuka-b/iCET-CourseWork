@@ -13,9 +13,6 @@ class Customer {
 
         for (int i = 0; i < customers.length; i++) {
 
-            System.out.println(customers[0].customerID);
-            System.out.println(customers[0].orders);
-
             if(customers[i].customerID.equals(customerID)) {
                 for (int j = 0; j < data.length; j++) {
                     for (Order order : customers[i].orders) {
@@ -32,7 +29,7 @@ class Customer {
     public static Customer[] placeOrder(Customer[] customers, Order order, String customerID) {
 
         for (int i = 0; i < customers.length; i++) {
-            if (customers[i].customerID.equals(customerID)) {
+            if (customers[i].customerID.equals(customerID)) { // Old customer
                 
                 customers[i].orders = extendOrders(customers[i].orders, order);
 
