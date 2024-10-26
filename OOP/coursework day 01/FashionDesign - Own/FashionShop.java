@@ -24,7 +24,6 @@ public class FashionShop {
 
         bestInCustomersTable.print();
 
-
         System.out.print("\n\tTo access the Main Menu, please enter 0 : ");
         int choice = ConsoleWriter.getIntegerInput();
 

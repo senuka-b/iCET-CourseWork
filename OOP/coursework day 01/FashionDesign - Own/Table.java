@@ -291,9 +291,7 @@ class Table {
     }
 
 
-    public static Table createBestInCustomersTable(Customer[] customers) {
-
-        if (customers.length == 0) return new Table(); // No Customers
+    private static String[][] getAllCustomerRows(Customer[] customers, boolean sort) {// No Customers
 
         String[][] bestInCustomersRows = new String[customers.length + 1][3];
 
@@ -317,12 +315,21 @@ class Table {
             bestInCustomersRows[i+1][2] = String.format("%.2f", totalAmount);
         }
 
-        sort(bestInCustomersRows, 2); // Sort in decending order with 'amount' value
+        if (sort) sort(bestInCustomersRows, 2); // Sort in decending order with 'amount' value
 
-        Table bestInCustomersTable = new Table(bestInCustomersRows);
+        return bestInCustomersRows;
+
+    }
+
+
+    public static Table createBestInCustomersTable(Customer[] customers) {
+        if (customers.length == 0) return new Table(); 
+        
+        String[][] bestInCustomerRows = getAllCustomerRows(customers, false);
+
+        Table bestInCustomersTable = new Table(bestInCustomerRows);
 
         return bestInCustomersTable;
-
     }
 
   
