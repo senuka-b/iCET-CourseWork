@@ -36,14 +36,19 @@ public class FashionShop {
 
         Table searchCustomerTable = Table.createSearchCustomerTable(customers, phoneNumber);
 
-        if (!phoneNumber.equals("invalid") && !searchCustomerTable.getIsEmpty()) {
+        if (!phoneNumber.equals("none")) {
 
-            searchCustomerTable.print();
+            if (!searchCustomerTable.getIsEmpty()) {
+
+                searchCustomerTable.print();
+
+            } else { 
+                // No customer
+                System.out.println("\n\n\t\tInvalid input ! \n");
+                
+            }
                         
-        } else {
-            System.out.println("\n\n\t\tInvalid input ! \n");
-
-        }
+        } 
 
         boolean choice = ConsoleWriter.yesNoChoice("Do you want to search another customer report?  (y/n) : ");
 
