@@ -16,9 +16,54 @@ public class FashionShop {
 
     }
 
+    private static boolean viewCustomerReports() {
+
+        ConsoleWriter.printViewCustomerReportPage();
+
+        System.out.print("\tEnter option : ");
+        int choice = ConsoleWriter.getIntegerInput();
+
+        switch (choice) {
+            case 1:
+                //return displayBestInCustomers();
+            
+            case 2:
+                //return displayCustomers();
+
+            case 3:
+                // return allCustomerReport();
+                
+        
+            default:
+                System.out.print("\n\t\tInvalid Input !\n");
+
+                boolean yn = ConsoleWriter.yesNoChoice("Do you want to enter an option again? (y/n) : ");
+
+                if (yn == false) {
+                    return yn;
+                }
+        }
+
+        return viewCustomerReports();
+
+    }
+
     private static void viewReports() {
 
         ConsoleWriter.printViewReportPage();
+
+        System.out.print("\tEnter option : ");
+        int choice = ConsoleWriter.getIntegerInput();
+
+        switch (choice) {
+            case 1:
+                if (viewCustomerReports()) return;
+                
+                break;
+        
+            default:
+                break;
+        }
 
     }
 

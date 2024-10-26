@@ -293,6 +293,54 @@ class ConsoleWriter {
         "                   " +
         "\r\n";
 
+    String  viewCustomerReportString = "\r\n" +
+        "              _____ " +
+        "         _          " +
+        "                    " +
+        "_____               " +
+        "        _       \r\n" +
+        "             / ____|" +
+        "        | |         " +
+        "                   |" +
+        "  __ \\             " +
+        "        | |      \r" +
+        "\n" +
+        "            | |    _" +
+        "   _ ___| |_ ___  _ " +
+        "__ ___   ___ _ __  |" +
+        " |__) |___ _ __   __" +
+        "_  _ __| |_ ___ \r\n" +
+        "            | |   | " +
+        "| | / __| __/ _ \\| " +
+        "\'_ ` _ \\ / _ \\ \'" +
+        "__| |  _  // _ \\ \'" +
+        "_ \\ / _ \\| \'__| _" +
+        "_/ __|\r\n" +
+        "            | |___| " +
+        "|_| \\__ \\ || (_) |" +
+        " | | | | |  __/ |   " +
+        " | | \\ \\  __/ |_) " +
+        "| (_) | |  | |_\\__ " +
+        "\\\r\n" +
+        "             \\_____" +
+        "\\__,_|___/\\__\\___" +
+        "/|_| |_| |_|\\___|_|" +
+        "    |_|  \\_\\___| ." +
+        "__/ \\___/|_|   \\__" +
+        "|___/\r\n" +
+        "                    " +
+        "                    " +
+        "                    " +
+        "          | |       " +
+        "                \r\n" +
+        "                    " +
+        "                    " +
+        "                    " +
+        "          |_|       " +
+        "                \r";
+
+
+
     public static void printHomePage() {
         clearConsole();
 
@@ -331,6 +379,19 @@ class ConsoleWriter {
         System.out.print(searchOrderString);
 
         System.out.print("   _________________________________________________________________\n\n");
+
+    }
+
+    public static void printViewCustomerReportPage() {
+        clearConsole();
+
+        System.out.println(viewReportsString);
+        
+        System.out.println("\t    ____________________________________________________________________________________\n");
+
+        System.out.println("\t\t[1] Best in Customers\n");
+        System.out.println("\t\t[2] View Customers\n");
+        System.out.println("\t\t[3] All Customer Report\n");
 
     }
 
