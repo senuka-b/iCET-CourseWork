@@ -16,6 +16,25 @@ public class FashionShop {
 
     }
 
+    private static boolean displayCustomers() {
+
+        ConsoleWriter.printViewCustomers();
+
+        Table allCustomersTable = Table.createAllCustomersTable(customers);
+
+        allCustomersTable.print();
+
+        System.out.print("\n\tTo access the Main Menu, please enter 0 : ");
+        int choice = ConsoleWriter.getIntegerInput();
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return displayCustomers();
+    }
+
     private static boolean displayBestInCustomers() {
 
         ConsoleWriter.printBestInCustomers();
@@ -48,7 +67,7 @@ public class FashionShop {
                 return displayBestInCustomers();
             
             case 2:
-                //return displayCustomers();
+                return displayCustomers();
 
             case 3:
                 // return allCustomerReport();

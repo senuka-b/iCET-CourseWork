@@ -325,11 +325,21 @@ class Table {
     public static Table createBestInCustomersTable(Customer[] customers) {
         if (customers.length == 0) return new Table(); 
         
-        String[][] bestInCustomerRows = getAllCustomerRows(customers, false);
+        String[][] bestInCustomerRows = getAllCustomerRows(customers, true);
 
         Table bestInCustomersTable = new Table(bestInCustomerRows);
 
         return bestInCustomersTable;
+    }
+
+    public static Table createAllCustomersTable(Customer[] customers) {
+        if (customers.length == 0) return new Table(); 
+        
+        String[][] allCustomersRows = getAllCustomerRows(customers, false);
+
+        Table allCustomersTable = new Table(allCustomersRows);
+
+        return allCustomersTable;
     }
 
   
