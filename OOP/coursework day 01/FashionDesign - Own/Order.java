@@ -11,7 +11,7 @@ class Order {
     private String tSize;
     private int qty;
 
-    private int status;
+    private int status; // processing by default
 
     Order(int orderNumber) {
         this.orderNumber = orderNumber;
@@ -26,6 +26,79 @@ class Order {
 
     }
 
+    public String getStatuString() {
+        switch (status) {
+            case processing:
+                return "processing";
+
+            case delievering: 
+                return "delievering";
+
+            case delievered:
+                return "delievered";
+
+            default:
+                return "";
+        }
+    }
+
+    public int getOrderNumber() {
+        return this.orderNumber;
+    }
+
+    public String getTSize() {
+        return this.tSize;
+    }
+
+    public static Order getOrderByNumber(int orderNumber, Customer[] customers) {
+        for (Customer customer : customers) {
+            for (Order order : customer.getOrders()) {
+                if (order.orderNumber == orderNumber) {
+                    return order;
+                }
+            }
+        }
+
+        return new Order(-1);
+    }
+
+
+    public static boolean isExists(Customer[] customers, int orderID) {
+        for (Customer customer : customers) {
+            for (Order order : customer.getOrders()) {
+                if (order.orderNumber == orderID) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static int validateOrderID(String orderIDString, Customer[] customers) {
+
+        if ((orderIDString.length() == 9) && 
+            (orderIDString
+            .substring(0, 4)
+            .toLowerCase()
+            .equals("odr#"))
+
+            ) {
+
+            String num_string = orderIDString.substring(4);
+
+            int parsed_id = Integer.parseInt(num_string);
+            if (isExists(customers, parsed_id)) {
+                return parsed_id;
+            }
+
+            
+        }
+
+        return -1;
+
+        
+    }
 
     public int getQuantity() {
         return qty;

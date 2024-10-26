@@ -8,6 +8,26 @@ class Customer {
         this.customerID = customerID;
     }
 
+    public static Customer getCustomerByOrder(Order order, Customer[] customers) {
+        for (Customer customer : customers) {
+            for (Order currentOrder : customer.orders) {
+                if (currentOrder.getOrderNumber() == order.getOrderNumber()) {
+                    return customer;
+                }
+            }
+        }
+
+        return new Customer("invalid");
+    }
+
+    public String getCustomerID() {
+        return this.customerID;
+    }
+
+    public Order[] getOrders() {
+        return orders;
+    }
+
     public static boolean isExists(Customer[] customers, String phoneNumber) {
         for (Customer customer : customers) {
             if (customer.customerID.equals(phoneNumber)) {

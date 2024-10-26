@@ -26,6 +26,34 @@ public class FashionShop {
 
         ConsoleWriter.printSearchOrderPage();
 
+        System.out.print("\tEnter Order ID : ");
+        int orderNumber = Order.validateOrderID(ConsoleWriter.getStringInput(), customers); 
+
+        if (!(orderNumber == -1)) {
+
+            System.out.println("\n");
+
+            Order order = Order.getOrderByNumber(orderNumber, customers);
+
+            System.out.println("\tPhone Number    : " + Customer.getCustomerByOrder(order, customers).getCustomerID());
+            System.out.println("\tSize\t\t: " + order.getTSize());
+            System.out.println("\tQty\t\t: " + order.getQuantity());
+            System.out.println("\tAmount\t\t: " + order.calculateAmount());
+            System.out.println("\tStatus\t\t: " + order.getStatuString());
+
+
+
+        } else {
+            // No order found / invalid ID
+            System.out.println("\n\t\tInvalid ID ! \n");
+        }
+
+        boolean choice = ConsoleWriter.yesNoChoice("Do you want to search another order? (y/n) : ");
+        
+        if (choice) {
+            searchOrder();
+        }
+
     }
 
     private static void searchCustomer() {
