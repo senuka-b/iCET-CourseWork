@@ -41,7 +41,22 @@ public class FashionShop {
     }
 
     private static boolean displayAllCustomerReport() {
-        return true;
+
+        ConsoleWriter.printAllCustomerReport();
+
+        Table allCustomerReportTable = Table.createAllCustomerReportTable(customers);
+
+        allCustomerReportTable.print();
+
+        System.out.print("\n\tTo access the Main Menu, please enter 0 : ");
+        int choice = ConsoleWriter.getIntegerInput();   
+
+        if (choice == 0) return true;
+
+        System.out.print("\033[0A");
+        System.out.print("\033[0J");
+
+        return displayAllCustomerReport();
     }
 
     private static boolean displayCustomers() {
@@ -128,11 +143,11 @@ public class FashionShop {
                 break;
         
             case 2:
-                if (viewItemReports()) return;
+                //if (viewItemReports()) return;
                 break;
 
             case 3:
-                if (viewOrderReports()) return;
+                //if (viewOrderReports()) return;
 
                 break;
         

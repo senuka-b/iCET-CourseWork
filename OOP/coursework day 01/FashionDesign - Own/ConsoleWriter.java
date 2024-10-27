@@ -293,7 +293,7 @@ class ConsoleWriter {
         "                   " +
         "\r\n";
 
-    String  viewCustomerReportString = "\r\n" +
+    private String viewCustomerReportString = "\r\n" +
         "              _____ " +
         "         _          " +
         "                    " +
@@ -339,7 +339,7 @@ class ConsoleWriter {
         "          |_|       " +
         "                \r";
 
-    static String bestInCustomersString = "\r\n" +
+    private static String bestInCustomersString = "\r\n" +
         "             ____   " +
         "         _     _____" +
         "          _____     " +
@@ -388,7 +388,7 @@ class ConsoleWriter {
         "                    " +
         "                  \r";
 
-    static String viewCustomersString = "\r\n" +
+    private static String viewCustomersString = "\r\n" +
         "            __      " +
         "___                 " +
         " _____          _   " +
@@ -431,6 +431,68 @@ class ConsoleWriter {
         "                    " +
         "                    " +
         "         \r";
+
+    private static String allCustomerReportString = "\r\n" +
+        "                    " +
+        "  _ _    _____      " +
+        "    _               " +
+        "               _____" +
+        "                    " +
+        "   _   \r\n" +
+        "                /\\ " +
+        "  | | |  / ____|    " +
+        "    | |             " +
+        "               |  __" +
+        " \\                 " +
+        "    | |  \r\n" +
+        "               /  \\" +
+        "  | | | | |    _   _" +
+        " ___| |_ ___  _ __ _" +
+        "__   ___ _ __  | |__" +
+        ") |___ _ __   ___  _" +
+        " __| |_ \r\n" +
+        "              / /\\ " +
+        "\\ | | | | |   | | |" +
+        " / __| __/ _ \\| \'_" +
+        " ` _ \\ / _ \\ \'__|" +
+        " |  _  // _ \\ \'_ " +
+        "\\ / _ \\| \'__| __|" +
+        "\r\n" +
+        "             / ____ " +
+        "\\| | | | |___| |_| " +
+        "\\__ \\ || (_) | | |" +
+        " | | |  __/ |    | |" +
+        " \\ \\  __/ |_) | (_" +
+        ") | |  | |_ \r\n" +
+        "            /_/    " +
+        "\\_\\_|_|  \\_____\\" +
+        "__,_|___/\\__\\___/|" +
+        "_| |_| |_|\\___|_|  " +
+        "  |_|  \\_\\___| .__" +
+        "/ \\___/|_|   \\__|" +
+        "\r\n" +
+        "                    " +
+        "                    " +
+        "                    " +
+        "                    " +
+        "     | |            " +
+        "       \r\n" +
+        "                    " +
+        "                    " +
+        "                    " +
+        "                    " +
+        "     |_|            " +
+        "       \r";
+
+    public static void printAllCustomerReport() {
+        clearConsole();
+
+        System.out.println(allCustomerReportString);
+
+        System.out.println("\t    _______________________________________________________________________________________________\n");
+
+
+    }
 
     public static void printHomePage() {
         clearConsole();

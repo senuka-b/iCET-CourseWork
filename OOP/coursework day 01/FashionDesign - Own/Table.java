@@ -9,6 +9,7 @@ class Table {
 
     private static String[] searchCustomerHeader = new String[]{"Sizes", "QTY", "Amount"};
     private static String[] bestInCustomersHeader = new String[]{"Customer ID", "All QTY", "Amount"};
+     
 
     Table(String[][] rows, boolean lastRowLong) {
         this.rows = rows;
@@ -342,6 +343,43 @@ class Table {
         return allCustomersTable;
     }
 
+    public static Table createAllCustomerReportTable(Customer[] customers) {
+        if (customers.length == 0) return new Table();
+
+        // Header
+        String[] allCustomerReportHeader = new String[8];
+        allCustomerReportHeader[0] = "Phone Number";
+
+        for (int i = 0; i < Order.getSizeArray().length; i++) {
+            allCustomerReportHeader[i+1] = Order.getSizeArray()[i].toUpperCase();
+        }
+
+        allCustomerReportHeader[7] = "Total";
+
+        String[][] allCustomerReportRows = new String[customers.length+1][allCustomerReportHeader.length];
+        allCustomerReportRows[0] = allCustomerReportHeader;
+
+        for (int i = 0; i < customers.length; i++) {
+            Customer currentCustomer = customers[i];
+
+            allCustomerReportRows[i+1][0] = currentCustomer.getCustomerID();
+
+            int[] quantityData = Customer.getQuantityData(customers, currentCustomer.getCustomerID());
+            double totalAmount = 0;
+
+            for (int j = 0; j < quantityData.length; j++) {
+                allCustomerReportRows[i+1][j+1] = String.format("%d", quantityData[j]);
+                totalAmount += Order.calculateAmount(Order.getSizeArray()[j], quantityData[j]);
+            }
+
+            allCustomerReportRows[i+1][7] = String.format("%.2f", totalAmount);
+        }
+        
+        Table allCustomerReportTable = new Table(allCustomerReportRows);
+
+        return allCustomerReportTable;
+
+    }
   
 
     
