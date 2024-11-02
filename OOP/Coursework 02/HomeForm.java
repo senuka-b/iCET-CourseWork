@@ -21,7 +21,11 @@ class HomeForm extends JFrame {
 
     private JLabel labelFooter;
 
-    HomeForm() {
+    private HomeForm ref;
+
+    HomeForm(CustomerCollection customerCollection) {
+
+        ref = this; // Home Form reference variable
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 560);
@@ -37,7 +41,7 @@ class HomeForm extends JFrame {
         buttonDelete = new JButton("Delete");
 
         buttonPlaceOrder = new JButton("Place Order");
-        buttonPlaceOrder.setFont(new Font("null", Font.BOLD, 25));
+        buttonPlaceOrder.setFont(new Font(null, Font.BOLD, 25));
         buttonPlaceOrder.setBackground(Color.decode("#00cccb"));
 
 
@@ -48,7 +52,7 @@ class HomeForm extends JFrame {
 
         JButton[] buttons = new JButton[]{buttonSearch, buttonStatus, buttonReport, buttonDelete};
         for (JButton button : buttons) {
-            button.setFont(new Font("null", Font.BOLD, 12));
+            button.setFont(new Font(null, Font.BOLD, 12));
 
             subButtonPanel_1.add(button);
         }
@@ -80,20 +84,27 @@ class HomeForm extends JFrame {
         
 
         labelHeader = new JLabel("Fashion Shop");
-        labelHeader.setFont(new Font("", Font.BOLD, 35));
+        labelHeader.setFont(new Font(null, Font.BOLD, 35));
         labelHeader.setForeground(Color.WHITE);
         labelHeader.setHorizontalAlignment(JLabel.CENTER);
         labelHeader.setOpaque(true);
         labelHeader.setBackground(Color.BLUE);
 
         labelFooter = new JLabel("Copyrights ©️ iCET 2024");
-        labelFooter.setFont(new Font("", Font.BOLD, 14));
+        labelFooter.setFont(new Font(null, Font.BOLD, 14));
         labelFooter.setHorizontalAlignment(JLabel.CENTER);
 
 
         add("North", labelHeader);
         add("Center", mainPanel);
         add("South", labelFooter);
+
+        buttonPlaceOrder.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                setVisible(false);
+                new PlaceOrderForm(ref, customerCollection).setVisible(true);
+            }
+        });
 
 
     }

@@ -1,6 +1,8 @@
 class FashionShop {
     public static void main(String[] args) {
-        new HomeForm().setVisible(true);
+        CustomerCollection customerCollection = new CustomerCollection();
+
+        new HomeForm(customerCollection).setVisible(true);
     }
     
 }
