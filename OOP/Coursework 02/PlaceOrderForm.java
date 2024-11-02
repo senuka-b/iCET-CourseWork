@@ -36,6 +36,8 @@ class PlaceOrderForm extends JFrame {
         //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
         setLocationRelativeTo(null);
 
+        setTitle("Place Order");
+
         JPanel labelPanel = new JPanel(new GridLayout(5, 1, 10,0));
         labelPanel.setBorder(new EmptyBorder(30,40,50,30));
 

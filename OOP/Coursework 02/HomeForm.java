@@ -32,6 +32,8 @@ class HomeForm extends JFrame {
         //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
         setLocationRelativeTo(null);
 
+        setTitle("Home");
+
 
         JPanel mainPanel = new JPanel(new GridLayout(1, 2, 40, 0));
 
@@ -121,6 +123,9 @@ class HomeForm extends JFrame {
                         break;
 
                     case 1:
+                        setVisible(false);
+                        new SearchOrderForm(ref, customerCollection).setVisible(true);
+
                         break;
                
                 

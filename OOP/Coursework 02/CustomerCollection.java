@@ -39,8 +39,17 @@ class CustomerCollection {
     public String[][] getSearchCustomerRows(String customerID) {
         return Customer.getSearchCustomerRows(customerArray, customerID);
     }
+
     public double getCustomerTotalAmount(String customerID) {
         return Customer.getCustomerTotalAmount(customerArray, customerID);
+    }
+
+    public Customer getCustomerIDByOrder(Order order) {
+        return Customer.getCustomerByOrder(order, customerArray);
+    }
+
+    public Order getOrderByID(String input) {
+        return Order.getOrderByID(input, customerArray);
     }
 
 

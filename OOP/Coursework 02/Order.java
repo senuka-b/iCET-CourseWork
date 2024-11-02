@@ -50,7 +50,9 @@ class Order {
         return this.tSize;
     }
 
-    public static Order getOrderByNumber(int orderNumber, Customer[] customers) {
+    public static Order getOrderByID(String orderID, Customer[] customers) {
+        int orderNumber = Integer.parseInt(orderID.substring(4));
+
         for (Customer customer : customers) {
             for (Order order : customer.getOrders()) {
                 if (order.orderNumber == orderNumber) {
@@ -63,10 +65,13 @@ class Order {
     }
 
 
-    public static boolean isExists(Customer[] customers, int orderID) {
+    public static boolean isExists(Customer[] customers, String orderID) {
+
+        int parsed_id = Integer.parseInt(orderID.substring(4));
+
         for (Customer customer : customers) {
             for (Order order : customer.getOrders()) {
-                if (order.orderNumber == orderID) {
+                if (order.getOrderNumber() == parsed_id) {
                     return true;
                 }
             }
@@ -75,30 +80,7 @@ class Order {
         return false;
     }
 
-    public static int validateOrderID(String orderIDString, Customer[] customers) {
-
-        if ((orderIDString.length() == 9) && 
-            (orderIDString
-            .substring(0, 4)
-            .toLowerCase()
-            .equals("odr#"))
-
-            ) {
-
-            String num_string = orderIDString.substring(4);
-
-            int parsed_id = Integer.parseInt(num_string);
-            if (isExists(customers, parsed_id)) {
-                return parsed_id;
-            }
-
-            
-        }
-
-        return -1;
-
-        
-    }
+    
 
     public int getQuantity() {
         return qty;
@@ -179,6 +161,21 @@ class Order {
     public String createOrderString() {
         
         return String.format("ODR#%06d", orderNumber);
+    }
+
+    public static boolean isValidOrderID(String orderID) {
+        if ((orderID.length() == 10) && 
+            (orderID
+            .substring(0, 4)
+            .toLowerCase()
+            .equals("odr#"))
+
+            ) {
+                return true;
+                
+        } else {
+            return false;
+        }
     }
 
 

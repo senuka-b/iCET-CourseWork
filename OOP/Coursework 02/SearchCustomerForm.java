@@ -31,6 +31,8 @@ class SearchCustomerForm extends JFrame{
         //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
         setLocationRelativeTo(null);
 
+        setTitle("Search Customer");
+
         buttonBack = new JButton("Back");
         buttonBack.setOpaque(true);
         buttonBack.setBackground(Color.RED);
