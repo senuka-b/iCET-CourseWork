@@ -138,7 +138,7 @@ class SearchOrderForm extends JFrame {
                     labelSizeValue.setText(order.getTSize());
                     labelQtyValue.setText(String.format("%d", order.getQuantity()));
                     labelAmountValue.setText(String.format("%.2f", order.calculateAmount()));
-                    labelStatusValue.setText(order.getStatuString());
+                    labelStatusValue.setText(order.getStatuString().toUpperCase());
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid Order ID ! ", "Error", JOptionPane.ERROR_MESSAGE);

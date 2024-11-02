@@ -138,6 +138,8 @@ class SearchCustomerForm extends JFrame{
                 }
            }
         });
+
+        
     }
 
 }

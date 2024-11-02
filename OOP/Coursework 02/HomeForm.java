@@ -134,6 +134,14 @@ class HomeForm extends JFrame {
             }
         });
 
+        buttonReport.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                setVisible(false);
+                new ReportForm(ref, customerCollection).setVisible(true);
+
+            }
+        });
+
 
     }
 

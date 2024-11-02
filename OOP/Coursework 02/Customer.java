@@ -118,7 +118,7 @@ class Customer {
                 String value = "";
                 switch (j) {
                     case 0:
-                        value = Order.getSizeArray()[i];
+                        value = Order.getSizeArray()[i].toUpperCase();
                         break;
                 
                     case 1:
