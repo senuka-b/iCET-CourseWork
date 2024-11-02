@@ -23,9 +23,11 @@ class HomeForm extends JFrame {
 
     HomeForm() {
 
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(600, 560);
+        //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
         setLocationRelativeTo(null);
-        setMinimumSize(getSize()); 
+
 
         JPanel mainPanel = new JPanel(new GridLayout(1, 2, 40, 0));
 
@@ -35,6 +37,8 @@ class HomeForm extends JFrame {
         buttonDelete = new JButton("Delete");
 
         buttonPlaceOrder = new JButton("Place Order");
+        buttonPlaceOrder.setFont(new Font("null", Font.BOLD, 25));
+        buttonPlaceOrder.setBackground(Color.decode("#00cccb"));
 
 
         JPanel buttonPanel = new JPanel(new GridLayout(2,1));
@@ -44,6 +48,8 @@ class HomeForm extends JFrame {
 
         JButton[] buttons = new JButton[]{buttonSearch, buttonStatus, buttonReport, buttonDelete};
         for (JButton button : buttons) {
+            button.setFont(new Font("null", Font.BOLD, 12));
+
             subButtonPanel_1.add(button);
         }
 
@@ -92,17 +98,5 @@ class HomeForm extends JFrame {
 
     }
 
-    private JPanel[] setPanels(JButton[] buttons) {
-        JPanel[] JPanelArray = new JPanel[buttons.length];
-
-        for (int i = 0; i < JPanelArray.length; i++) {
-            JPanel panel = new JPanel(new FlowLayout());
-            panel.add(buttons[i]);
-
-            JPanelArray[i] = panel;
-        }
-
-        return JPanelArray;
-    }
 
 }
