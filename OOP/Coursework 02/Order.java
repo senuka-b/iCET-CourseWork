@@ -181,17 +181,5 @@ class Order {
         return String.format("ODR#%06d", orderNumber);
     }
 
-    private int getOrderNumberLength() {
-       
-        int num = orderNumber;
-        int length = 0;
-
-        do {
-            length++;
-        } while ((num/=10) != 0);
-
-        return length;
-
-    }
 
 }

@@ -106,6 +106,29 @@ class HomeForm extends JFrame {
             }
         });
 
+        buttonSearch.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+
+                Object[] options = new Object[]{"Search Customer", "Search Order", "Cancel"};
+
+                int selection = JOptionPane.showOptionDialog(null, "Please select an option", "Search Options", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[2]);
+
+                switch (selection) {
+                    case 0:
+                        setVisible(false);
+                        new SearchCustomerForm(ref, customerCollection).setVisible(true);
+
+                        break;
+
+                    case 1:
+                        break;
+               
+                
+               }
+
+            }
+        });
+
 
     }
 

@@ -108,6 +108,49 @@ class Customer {
         return temp_o;
     }
 
+    public static String[][] getSearchCustomerRows(Customer[] customers, String phoneNumber) {
+        int[] quantityData = Customer.getQuantityData(customers, phoneNumber);
+
+        String[][] customerReportRows = new String[6][3];
+
+        for (int i = 0; i < customerReportRows.length; i++) {
+            for (int j = 0; j < customerReportRows[i].length; j++) {
+                String value = "";
+                switch (j) {
+                    case 0:
+                        value = Order.getSizeArray()[i];
+                        break;
+                
+                    case 1:
+                        value = String.format("%d", quantityData[i]);
+                        break;
+
+                    case 2:
+                        value = String.format("%.2f", Order.calculateAmount(Order.getSizeArray()[i], quantityData[i]));
+                        break;
+                }
+
+                customerReportRows[i][j] = value;
+            }
+        }
+
+        return customerReportRows;
+
+        
+
+    }
+
+    public static double getCustomerTotalAmount(Customer[] customers, String phoneNumber) {
+        int[] quantityData = Customer.getQuantityData(customers, phoneNumber);
+
+        double totalAmount = 0;
+        for (int i = 0; i < quantityData.length; i++) {
+            totalAmount += Order.calculateAmount(Order.getSizeArray()[i], quantityData[i]);
+        }
+
+        return totalAmount;
+    }
+
 
    
 }
