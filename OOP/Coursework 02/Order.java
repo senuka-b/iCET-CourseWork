@@ -178,5 +178,36 @@ class Order {
         }
     }
 
+    public static String[][] getOrdersCategorizedByQTYRows(Customer[] customers) {
+        String[][] data = new String[6][3];
+
+        // [[total_qty, sum], ...]
+        double[][] values = new double[6][2];
+
+        for (int i = 0; i < customers.length; i++) {
+
+
+            int[] quantity_data = Customer.getQuantityData(customers, customers[i].getCustomerID());
+
+            for (int j = 0; j < quantity_data.length; j++) {
+                    values[j][0] += quantity_data[j];
+                    values[j][1] += calculateAmount(sizes[j], quantity_data[j]);
+            }
+            
+
+        }
+
+        
+        for (int i = 0; i < values.length; i++) {
+            data[i][0] = sizes[i];
+            data[i][1] = String.format("%.0f", values[i][0]);
+            data[i][2] = String.format("%.2f", values[i][1]);
+        }
+
+        Customer.sort(data, 1);
+
+        return data;
+    }
+
 
 }

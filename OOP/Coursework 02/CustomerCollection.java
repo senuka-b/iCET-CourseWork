@@ -64,5 +64,8 @@ class CustomerCollection {
         return Customer.getAllCustomerReportRows(customerArray);
     }
 
+    public String[][] getOrdersCategorizedByQTYRows() {
+        return Order.getOrdersCategorizedByQTYRows(customerArray);
+    }
 
 }

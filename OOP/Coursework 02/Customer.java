@@ -151,7 +151,7 @@ class Customer {
         return totalAmount;
     }
 
-    private static void sort(String[][] data, int sort_index) {
+    public static void sort(String[][] data, int sort_index) {
 
         for(int i = data.length-1; i>0; i--){
 			for(int j=0; j<i; j++){
