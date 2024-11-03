@@ -5,21 +5,21 @@ import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.*;;
 
-class ViewCustomersForm extends JFrame {
+class AllCustomersForm extends JFrame {
     
     private JButton buttonBack;
 
     private DefaultTableModel dtm;
     private JTable table; 
 
-    ViewCustomersForm(ReportForm reportForm, CustomerCollection customerCollection) {
+    AllCustomersForm(ReportForm reportForm, CustomerCollection customerCollection) {
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(650, 500);
+        setSize(800, 500);
         //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
         setLocationRelativeTo(null);
 
-        setTitle("View Customers");
+        setTitle("All Customers");
 
         buttonBack = new JButton("Back");
         buttonBack.setOpaque(true);
@@ -30,7 +30,14 @@ class ViewCustomersForm extends JFrame {
         JPanel buttonBackPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         buttonBackPanel.add(buttonBack);
 
-        Object[] headers = new Object[]{"Customer ID", "QTY", "Amount"};
+        Object[] headers = new Object[8];
+        headers[0] = "Customer ID";
+        headers[7] = "Amount";
+
+        for (int i = 1; i < headers.length-1; i++) {
+            headers[i] = Order.getSizeArray()[i-1].toUpperCase();
+        }
+
         dtm = new DefaultTableModel(headers, 0);
         table = new JTable(dtm);
 
@@ -43,7 +50,7 @@ class ViewCustomersForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] viewCustomersRow = customerCollection.getViewCustomersRows();
+        String[][] allCustomerReportRows = customerCollection.getAllCustomerReportRows();
 
         table.setRowHeight(40);
 
@@ -54,7 +61,7 @@ class ViewCustomersForm extends JFrame {
             table.getColumn(column).setCellRenderer(cellRenderer);    
         }
 
-        for (String[] row : viewCustomersRow) {
+        for (String[] row : allCustomerReportRows) {
             dtm.addRow(row);
         }
 

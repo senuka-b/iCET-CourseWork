@@ -208,6 +208,30 @@ class Customer {
         return getAllCustomerRows(customers, false);
     }
 
+    public static String[][] getAllCustomerReportRows(Customer[] customers) {
+        String[][] allCustomerReportRows = new String[customers.length][8];
+
+        for (int i = 0; i < customers.length; i++) {
+            Customer currentCustomer = customers[i];
+
+            allCustomerReportRows[i][0] = currentCustomer.getCustomerID();
+
+            int[] quantityData = Customer.getQuantityData(customers, currentCustomer.getCustomerID());
+            double totalAmount = 0;
+
+            for (int j = 0; j < quantityData.length; j++) {
+                allCustomerReportRows[i][j+1] = String.format("%d", quantityData[j]);
+                totalAmount += Order.calculateAmount(Order.getSizeArray()[j], quantityData[j]);
+            }
+
+            allCustomerReportRows[i][7] = String.format("%.2f", totalAmount);
+        }
+
+        return allCustomerReportRows;
+        
+    }
+    
+
 
    
 }

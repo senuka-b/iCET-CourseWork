@@ -60,5 +60,9 @@ class CustomerCollection {
         return Customer.getViewCustomerRows(customerArray);
     }
 
+    public String[][] getAllCustomerReportRows() {
+        return Customer.getAllCustomerReportRows(customerArray);
+    }
+
 
 }
