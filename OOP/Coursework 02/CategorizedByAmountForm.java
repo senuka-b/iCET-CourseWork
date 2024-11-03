@@ -5,21 +5,21 @@ import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.*;;
 
-class CategorizedByQTYForm extends JFrame {
+class CategorizedByAmountForm extends JFrame {
     
     private JButton buttonBack;
 
     private DefaultTableModel dtm;
     private JTable table; 
 
-    CategorizedByQTYForm(ReportForm reportForm, CustomerCollection customerCollection) {
+    CategorizedByAmountForm(ReportForm reportForm, CustomerCollection customerCollection) {
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(550, 430);
         //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
         setLocationRelativeTo(null);
 
-        setTitle("Categorized By QTY");
+        setTitle("Categorized By Amount");
 
         buttonBack = new JButton("Back");
         buttonBack.setOpaque(true);
@@ -43,7 +43,7 @@ class CategorizedByQTYForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] categorizedByQTYRows = customerCollection.getOrdersCategorizedByQTYRows();
+        String[][] categorizedByAmountRows = customerCollection.getOrdersCategorizedByAmountRows();
 
         table.setRowHeight(40);
 
@@ -54,7 +54,7 @@ class CategorizedByQTYForm extends JFrame {
             table.getColumn(column).setCellRenderer(cellRenderer);    
         }
 
-        for (String[] row : categorizedByQTYRows) {
+        for (String[] row : categorizedByAmountRows) {
             dtm.addRow(row);
         }
 

@@ -137,6 +137,13 @@ class ReportForm extends JFrame {
             }
         });
 
+        buttonByAmount.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                setVisible(false);
+                new CategorizedByAmountForm(reportForm, customerCollection).setVisible(true);
+            }
+        });
+
         buttonBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 homeForm.setVisible(true);

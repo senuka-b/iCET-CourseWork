@@ -178,7 +178,7 @@ class Order {
         }
     }
 
-    public static String[][] getOrdersCategorizedByQTYRows(Customer[] customers) {
+    private static String[][] getQuantityRows(Customer[] customers, int sort_index) {
         String[][] data = new String[6][3];
 
         // [[total_qty, sum], ...]
@@ -204,9 +204,18 @@ class Order {
             data[i][2] = String.format("%.2f", values[i][1]);
         }
 
-        Customer.sort(data, 1);
+        Customer.sort(data, sort_index);
 
         return data;
+    }
+
+    public static String[][] getOrdersCategorizedByQTYRows(Customer[] customers) {
+        return getQuantityRows(customers, 1);
+
+    }
+
+    public static String[][] getOrdersCategorizedByAmountRows(Customer[] customers) {
+        return getQuantityRows(customers, 2);
     }
 
 
