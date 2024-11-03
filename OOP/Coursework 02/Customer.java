@@ -151,6 +151,59 @@ class Customer {
         return totalAmount;
     }
 
+    private static void sort(String[][] data, int sort_index) {
+
+        for(int i = data.length-1; i>0; i--){
+			for(int j=0; j<i; j++){
+
+                double amount_1 = Double.parseDouble(data[j][sort_index]);
+                double amount_2 = Double.parseDouble(data[j+1][sort_index]);
+
+				if(amount_1 < amount_2){
+
+					String[] temp = data[j];
+					data[j] = data[j+1];
+					data[j+1] = temp;
+				}	
+				
+			}
+		}
+    }
+
+    private static String[][] getAllCustomerRows(Customer[] customers, boolean sort) {// No Customers
+
+        String[][] bestInCustomersRows = new String[customers.length][3];
+
+        for (int i = 0; i < customers.length; i++) {
+            Customer currentCustomer = customers[i];
+
+            int[] quantityData = Customer.getQuantityData(customers, currentCustomer.getCustomerID());
+
+            double totalAmount = 0;
+            int totalQuantities = 0;
+
+            for (int j = 0; j < quantityData.length; j++) {
+                totalQuantities += quantityData[j];
+                totalAmount += Order.calculateAmount(Order.getSizeArray()[j], quantityData[j]);
+            }
+
+            bestInCustomersRows[i][0] = currentCustomer.getCustomerID();
+            bestInCustomersRows[i][1] = String.format("%d", totalQuantities);
+            bestInCustomersRows[i][2] = String.format("%.2f", totalAmount);
+        }
+
+
+        sort(bestInCustomersRows, 2); // Sort in decending order with 'amount' value
+
+
+        return bestInCustomersRows;
+
+    }
+
+    public static String[][] getBestInCustomersRows(Customer[] customers) {
+        return getAllCustomerRows(customers, true);
+    }
+
 
    
 }

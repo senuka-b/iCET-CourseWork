@@ -52,5 +52,9 @@ class CustomerCollection {
         return Order.getOrderByID(input, customerArray);
     }
 
+    public String[][] getBestInCustomersRows() {
+        return Customer.getBestInCustomersRows(customerArray);
+    }
+
 
 }

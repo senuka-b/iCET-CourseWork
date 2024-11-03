@@ -105,9 +105,10 @@ class ReportForm extends JFrame {
         add("Center", mainPanel);
 
 
-        buttonViewCustomers.addActionListener(new ActionListener() {
+        buttonBestInCustomers.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
-                
+                setVisible(false);
+                new BestInCustomersForm(homeForm, customerCollection).setVisible(true);
             }
         });
 
