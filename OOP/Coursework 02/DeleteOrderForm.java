@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.concurrent.Flow;
 
-class ChangeStatusForm extends JFrame {
+class DeleteOrderForm extends JFrame {
 
     
     private JLabel labelCustomerID;
@@ -29,7 +29,7 @@ class ChangeStatusForm extends JFrame {
 
     private Order currentOrder;
 
-    ChangeStatusForm(HomeForm homeForm, CustomerCollection customerCollection) {
+    DeleteOrderForm(HomeForm homeForm, CustomerCollection customerCollection) {
 
         this.customerCollection = customerCollection;
 
@@ -117,17 +117,16 @@ class ChangeStatusForm extends JFrame {
         topPanel.add(subTopPanel);
 
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        JButton buttonChangeStatus = new JButton("Change Status");
-        buttonChangeStatus.setOpaque(true);
-        buttonChangeStatus.setBackground(Color.decode("#6599fe"));
-        buttonChangeStatus.setForeground(Color.WHITE);
-        buttonChangeStatus.setFont(new Font(null, Font.BOLD, 18));
+        JButton buttonDelete = new JButton("Delete");
+        buttonDelete.setOpaque(true);
+        buttonDelete.setBackground(Color.decode("#993300"));
+        buttonDelete.setForeground(Color.WHITE);
+        buttonDelete.setFont(new Font(null, Font.BOLD, 18));
 
-        buttonChangeStatus.setEnabled(false);
-        buttonChangeStatus.setContentAreaFilled(false);
+        buttonDelete.setEnabled(false);
+        buttonDelete.setContentAreaFilled(false);
 
-
-        bottomPanel.add(buttonChangeStatus);
+        bottomPanel.add(buttonDelete);
 
         
         add("North", topPanel);
@@ -144,37 +143,40 @@ class ChangeStatusForm extends JFrame {
             }
         });
 
-        buttonChangeStatus.addActionListener(new ActionListener() {
+        buttonDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
 
+                int choice = JOptionPane.showOptionDialog(null,
+                        "Do you want to delete this order?",
+                        "Delete Confirmation",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.YES_NO_OPTION,
+                        null, 
+                        new Object[]{"Yes", "No"}, "No");
 
-                String status = currentOrder.getStatuString();
+                switch (choice) {
+                    case 0:
+                        customerCollection.deleteOrder(currentOrder);
 
-                Object[] options;
-                switch (status) {
-                    case "processing":
-                        options = new Object[]{"Delievering", "Delievered"};
+                        textFieldOrderID.setText("");
+
+                        labelCustomerIDValue.setText("");
+                        labelSizeValue.setText("");
+                        labelQtyValue.setText("");
+                        labelAmountValue.setText("");
+                        labelStatusValue.setText("");
+
+                        JOptionPane.showMessageDialog(null, "Order Deleted ! ", "Delete Information", JOptionPane.INFORMATION_MESSAGE);
+                        
+                        buttonDelete.setEnabled(false);
+                        buttonDelete.setContentAreaFilled(false);
+
                         break;
                 
                     default:
-                        options = new Object[]{"Delievered"};
                         break;
                 }
 
-                int choice = JOptionPane.showOptionDialog(null, "Please select the status", "Status", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "Delievered");
-
-                if (status.equals("processing")) {
-                    currentOrder.setStatus(choice+1);
-                } else {
-                    currentOrder.setStatus(2);
-                }
-
-                if (currentOrder.getStatuString().equals("delievered")) {
-                    buttonChangeStatus.setEnabled(false);
-                    buttonChangeStatus.setContentAreaFilled(false);
-                }
-
-                labelStatusValue.setText(currentOrder.getStatuString().toUpperCase());
                 
             }
         });
@@ -188,12 +190,8 @@ class ChangeStatusForm extends JFrame {
                     Order order = customerCollection.getOrderByID(input);
                     currentOrder = order;
 
-                    if (!order.getStatuString().equals("delievered")) {
-
-                        buttonChangeStatus.setEnabled(true);
-                        buttonChangeStatus.setContentAreaFilled(true);
-
-                    }
+                    buttonDelete.setEnabled(true);
+                    buttonDelete.setContentAreaFilled(true);
 
                     labelCustomerIDValue.setText(customerCollection.getCustomerIDByOrder(order).getCustomerID());
                     labelSizeValue.setText(order.getTSize());

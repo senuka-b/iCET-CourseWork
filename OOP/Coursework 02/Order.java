@@ -26,6 +26,34 @@ class Order {
 
     }
 
+    public static boolean deleteOrder(Customer[] customers, Order order) {
+        for (int i = 0; i < customers.length; i++) {
+            Order[] orders = customers[i].getOrders();
+
+            for (int j = 0; j < orders.length; j++) {
+                if (order.getOrderNumber() == orders[j].getOrderNumber()) {
+                    
+                    Order[] temp = new Order[orders.length-1];
+                  
+                    for (int k = 0; k < j; k++) {
+                        temp[k] = orders[k];
+                    }
+
+                    for (int k = j; k < temp.length; k++) {
+                        temp[k] = orders[k+1];
+                    }
+
+                    customers[i].setOrders(temp);
+
+                    return true;
+
+                }
+            }
+        }
+
+        return false;
+    }
+
     public void setStatus(int status) {
         this.status = status;
     }

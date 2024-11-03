@@ -8,6 +8,10 @@ class Customer {
         this.customerID = customerID;
     }
 
+    public void setOrders(Order[] orders) {
+        this.orders = orders;
+    }
+
     public static boolean isValidCustomerID(String text) {
         if (text.toLowerCase().charAt(0) == '0' && text.length() == 10) {
             return true;

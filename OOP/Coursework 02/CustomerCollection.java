@@ -80,4 +80,8 @@ class CustomerCollection {
         return Order.getOrderByAmountRows(customerArray);
     }
 
+    public boolean deleteOrder(Order order) {
+        return Order.deleteOrder(customerArray, order);
+    }
+
 }

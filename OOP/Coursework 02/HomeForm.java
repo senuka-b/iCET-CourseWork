@@ -149,6 +149,13 @@ class HomeForm extends JFrame {
             }
         });
 
+        buttonDelete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                setVisible(false);
+                new DeleteOrderForm(ref, customerCollection).setVisible(true);
+            }
+        });
+
 
     }
 
