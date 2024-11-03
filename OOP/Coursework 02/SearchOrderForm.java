@@ -35,13 +35,13 @@ class SearchOrderForm extends JFrame {
         //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
         setLocationRelativeTo(null);
 
-        setTitle("Place Order");
+        setTitle("Search Order");
 
         
         JPanel subTopPanel = new JPanel(new GridLayout(1,3));
         subTopPanel.setBorder(new EmptyBorder(0,0,20,0));
 
-        labelCustomerID = new JLabel("Enter Customer ID : ");
+        labelCustomerID = new JLabel("Enter Order ID : ");
         labelCustomerID.setFont(new Font(null, Font.BOLD, 16));
         labelCustomerID.setHorizontalAlignment(JLabel.CENTER);
 
@@ -64,7 +64,7 @@ class SearchOrderForm extends JFrame {
         JPanel labelPanel = new JPanel(new GridLayout(5, 1, 10,0));
         labelPanel.setBorder(new EmptyBorder(10,40,50,30));
 
-        labelCustomerID = new JLabel("Order ID : ");
+        labelCustomerID = new JLabel("Customer ID : ");
         labelSize = new JLabel("Size : ");
         labelQty = new JLabel("QTY : ");
         labelAmount = new JLabel("Amount : ");
