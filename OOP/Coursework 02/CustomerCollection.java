@@ -7,16 +7,16 @@ class CustomerCollection {
         // --- TESTING ---
 
 
-        customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "xs", 10), "0705532339"); // 6000
-        customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "xs", 10), "0705532339"); // 6000
-        customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "m", 20), "0705532339"); // 18000
-        customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "l", 40), "0705532339"); // 40000 -> 70000
+        // customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "xs", 10), "0705532339"); // 6000
+        // customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "xs", 10), "0705532339"); // 6000
+        // customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "m", 20), "0705532339"); // 18000
+        // customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "l", 40), "0705532339"); // 40000 -> 70000
 
-        customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "xxl", 100), "0111111111"); // 120000
-        customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "m", 5), "0111111111"); // 4500 -> 124500
+        // customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "xxl", 100), "0111111111"); // 120000
+        // customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "m", 5), "0111111111"); // 4500 -> 124500
 
-        customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "s", 30), "0222222222"); // 24000
-        customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "xs", 50), "0222222222"); // 30000 -> 54000
+        // customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "s", 30), "0222222222"); // 24000
+        // customerArray = Customer.placeOrder(customerArray, new Order(++orderCount, "xs", 50), "0222222222"); // 30000 -> 54000
         
 
     }
