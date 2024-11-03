@@ -56,5 +56,9 @@ class CustomerCollection {
         return Customer.getBestInCustomersRows(customerArray);
     }
 
+    public String[][] getViewCustomersRows() {
+        return Customer.getViewCustomerRows(customerArray);
+    }
+
 
 }

@@ -193,7 +193,7 @@ class Customer {
         }
 
 
-        sort(bestInCustomersRows, 2); // Sort in decending order with 'amount' value
+        if(sort) sort(bestInCustomersRows, 2); // Sort in decending order with 'amount' value
 
 
         return bestInCustomersRows;
@@ -202,6 +202,10 @@ class Customer {
 
     public static String[][] getBestInCustomersRows(Customer[] customers) {
         return getAllCustomerRows(customers, true);
+    }
+
+    public static String[][] getViewCustomerRows(Customer[] customers) {
+        return getAllCustomerRows(customers, false);
     }
 
 

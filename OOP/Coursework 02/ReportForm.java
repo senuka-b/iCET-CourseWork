@@ -17,7 +17,11 @@ class ReportForm extends JFrame {
     private JButton buttonOrdersByAmount;
     private JButton buttonAllOrders;
 
+    private ReportForm reportForm;
+
     ReportForm(HomeForm homeForm, CustomerCollection customerCollection) {
+
+        reportForm = this;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(700, 300);
@@ -108,7 +112,21 @@ class ReportForm extends JFrame {
         buttonBestInCustomers.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new BestInCustomersForm(homeForm, customerCollection).setVisible(true);
+                new BestInCustomersForm(reportForm, customerCollection).setVisible(true);
+            }
+        });
+
+        buttonViewCustomers.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                setVisible(false);
+                new ViewCustomersForm(reportForm, customerCollection).setVisible(true);
+            }
+        });
+
+        buttonBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                homeForm.setVisible(true);
+                dispose();
             }
         });
 

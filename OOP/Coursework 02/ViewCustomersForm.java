@@ -5,21 +5,21 @@ import java.awt.event.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.*;;
 
-class BestInCustomersForm extends JFrame {
+class ViewCustomersForm extends JFrame {
     
     private JButton buttonBack;
 
     private DefaultTableModel dtm;
     private JTable table; 
 
-    BestInCustomersForm(ReportForm reportForm, CustomerCollection customerCollection) {
+    ViewCustomersForm(ReportForm reportForm, CustomerCollection customerCollection) {
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 500);
         //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
         setLocationRelativeTo(null);
 
-        setTitle("Best In Customers");
+        setTitle("View Customers");
 
         buttonBack = new JButton("Back");
         buttonBack.setOpaque(true);
@@ -43,7 +43,7 @@ class BestInCustomersForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] bestInCustomersRow = customerCollection.getBestInCustomersRows();
+        String[][] bestInCustomersRow = customerCollection.getViewCustomersRows();
 
         table.setRowHeight(40);
 
