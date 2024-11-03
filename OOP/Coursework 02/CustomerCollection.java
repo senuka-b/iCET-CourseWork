@@ -72,4 +72,12 @@ class CustomerCollection {
         return Order.getOrdersCategorizedByAmountRows(customerArray);
     }
 
+    public String[][] getAllOrderRows() {
+        return Order.getAllOrderRows(customerArray);
+    }
+
+    public String[][] getOrderByAmountRows() {
+        return Order.getOrderByAmountRows(customerArray);
+    }
+
 }

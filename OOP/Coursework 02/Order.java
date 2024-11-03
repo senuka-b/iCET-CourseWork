@@ -163,6 +163,11 @@ class Order {
         return String.format("ODR#%06d", orderNumber);
     }
 
+    public static String createOrderString(String orderNumber) {
+
+        return String.format("ODR#%06d", Integer.parseInt(orderNumber));
+    }
+
     public static boolean isValidOrderID(String orderID) {
         if ((orderID.length() == 10) && 
             (orderID
@@ -217,6 +222,58 @@ class Order {
     public static String[][] getOrdersCategorizedByAmountRows(Customer[] customers) {
         return getQuantityRows(customers, 2);
     }
+
+    private static String[][] getOrderData(Customer[] customers, int sort_index) {
+
+        // [[orderId, phone, size, qty, amount, status], ...]
+       String[][] data = new String[0][6];
+
+       for (int i = 0; i < customers.length; i++) {
+            Order[] currentOrders = customers[i].getOrders();
+
+            for (int j = 0; j < currentOrders.length; j++) {
+                
+                Order order = currentOrders[j];
+
+                String[][] temp = new String[data.length+1][6];
+
+                for (int k = 0; k < data.length; k++) {
+                    temp[k] = data[k];
+                }
+
+                data = temp;
+
+                data[data.length - 1][0] = Integer.toString(order.getOrderNumber());
+                data[data.length - 1][1] = Customer.getCustomerByOrder(order, customers).getCustomerID();
+                data[data.length - 1][2] = order.getTSize();
+                data[data.length - 1][3] = String.format("%d", order.getQuantity());
+                data[data.length - 1][4] = String.format("%.2f",order.calculateAmount());
+                data[data.length - 1][5] = order.getStatuString();        
+               
+
+            }
+       }
+
+
+        Customer.sort(data, sort_index);
+
+        for (int i = 0; i < data.length; i++) {
+            data[i][0] = Order.createOrderString(data[i][0]);
+              
+        }
+
+        return data;
+    }
+
+    public static String[][] getAllOrderRows(Customer[] customers) {
+        return getOrderData(customers, 0); // sorted by order number
+    }
+
+    public static String[][] getOrderByAmountRows(Customer[] customers) {
+        return getOrderData(customers, 4);
+    }
+
+    
 
 
 }
