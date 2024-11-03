@@ -142,6 +142,13 @@ class HomeForm extends JFrame {
             }
         });
 
+        buttonStatus.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                setVisible(false);
+                new ChangeStatusForm(ref, customerCollection).setVisible(true);
+            }
+        });
+
 
     }
 

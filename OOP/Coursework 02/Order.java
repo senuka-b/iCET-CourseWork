@@ -26,6 +26,10 @@ class Order {
 
     }
 
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public String getStatuString() {
         switch (status) {
             case processing:
@@ -273,7 +277,7 @@ class Order {
         return getOrderData(customers, 4);
     }
 
-    
+
 
 
 }
