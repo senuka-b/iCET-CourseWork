@@ -16,6 +16,8 @@ class Customer {
     public String toString() {
         String returnString = this.customerID + ":";
 
+        if (this.orders.length == 0) return null;
+
         int i = 0;
         for (Order order : this.orders) {
             returnString += order.toString() + (i != this.orders.length-1 ? "_" : "");

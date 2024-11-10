@@ -23,8 +23,12 @@ class FileManager {
             for (int i = 0; i < customers.length; i++) {
                 Customer currentCustomer = customers[i];
 
-                writer.write(currentCustomer.toString());
-                writer.write("\n");
+                if (currentCustomer.toString() != null) {
+                    writer.write(currentCustomer.toString());
+                    
+                    writer.write("\n");
+                }
+                
             }
 
             writer.flush();
@@ -71,29 +75,4 @@ class FileManager {
 
 
 
-    public static void placeOrder(String customerID, String size, int qty) {
-
-        Object[] customerStrings = getCustomers();
-        if (customerStrings == null) {
-            String field = customerID + (new Order(1, size, qty).toString());
-
-            try {
-                FileWriter writer = new FileWriter("data/customers.txt");
-
-                writer.write(field);
-                writer.flush();
-
-                writer.close();
-
-            } catch (IOException e) {
-            }
-            
-        } else {
-
-            Object[] newCustomers;
-
-
-        }
-        
-    }
 }

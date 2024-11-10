@@ -26,8 +26,12 @@ class CustomerCollection {
         return parseToCustomerObjects();
     }
 
+    public static void setCustomersArray(Customer[] array) {
+        customerArray = array;
+    }
+
     public static Order getLastOrder() {
-        customerArray = parseToCustomerObjects();
+        parseToCustomerObjects();
 
         if (customerArray.length == 0) return null;
 
@@ -46,9 +50,13 @@ class CustomerCollection {
     private static Customer[] parseToCustomerObjects() {
         String[] customerStrings = FileManager.getCustomers();
 
-        if (customerStrings == null) return new Customer[0];
-
+        if (customerStrings == null) {
+            return customerArray = new Customer[0];
+        }
+        
         Customer[] customersArray = new Customer[customerStrings.length];
+
+        System.out.println("Yes");
         
         for (int j=0; j < customerStrings.length; j++) {
             String[] customerStringsArray = customerStrings[j].split(":"); // [custoemrID, order1_order2_...]
@@ -81,6 +89,7 @@ class CustomerCollection {
         
     }
 
+        CustomerCollection.setCustomersArray(customersArray);
         return customersArray;
     }
 
@@ -140,7 +149,9 @@ class CustomerCollection {
     }
 
     public static boolean deleteOrder(Order order) {
-        return Order.deleteOrder(getCustomers(), order);
+        Order.deleteOrder(getCustomers(), order);
+
+        return FileManager.dumpToFile(customerArray);
     }
 
 }
