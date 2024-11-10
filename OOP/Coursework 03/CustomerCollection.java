@@ -22,8 +22,15 @@ class CustomerCollection {
 
     }
 
+    public static Customer[] getCustomerArray() {
+        // When updating elements in the customer object, this array is required.,
+        return customerArray;
+    }
+
     public static Customer[] getCustomers() {
-        return parseToCustomerObjects();
+        parseToCustomerObjects();
+
+        return customerArray;
     }
 
     public static void setCustomersArray(Customer[] array) {
@@ -55,8 +62,6 @@ class CustomerCollection {
         }
         
         Customer[] customersArray = new Customer[customerStrings.length];
-
-        System.out.println("Yes");
         
         for (int j=0; j < customerStrings.length; j++) {
             String[] customerStringsArray = customerStrings[j].split(":"); // [custoemrID, order1_order2_...]
@@ -117,7 +122,7 @@ class CustomerCollection {
     }
 
     public static Order getOrderByID(String input) {
-        return Order.getOrderByID(input, getCustomers());
+        return Order.getOrderByID(input, customerArray);
     }
 
     public static String[][] getBestInCustomersRows() {

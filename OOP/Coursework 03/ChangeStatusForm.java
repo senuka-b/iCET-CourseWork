@@ -172,6 +172,8 @@ class ChangeStatusForm extends JFrame {
                 }
 
                 labelStatusValue.setText(currentOrder.getStatuString().toUpperCase());
+
+                FileManager.dumpToFile(CustomerCollection.getCustomerArray()); // Update status in file.
                 
             }
         });
@@ -181,22 +183,26 @@ class ChangeStatusForm extends JFrame {
                 String input = textFieldOrderID.getText();
 
                 if (Order.isValidOrderID(input) && Order.isExists(CustomerCollection.getCustomers(), input)) {
-
+                    
                     Order order = CustomerCollection.getOrderByID(input);
-                    currentOrder = order;
+                    
+                    System.out.println("ORDER YES");
 
-                    if (!order.getStatuString().equals("delievered")) {
+                    System.out.println("ORDER YES YES" + order.getStatuString());               
 
-                        buttonChangeStatus.setEnabled(true);
-                        buttonChangeStatus.setContentAreaFilled(true);
-
-                    }
-
+                    boolean isOrderDelievered = order.getStatuString().equals("delievered");
+                    
+                    buttonChangeStatus.setEnabled(!isOrderDelievered);
+                    buttonChangeStatus.setContentAreaFilled(!isOrderDelievered);
+                
+                    
                     labelCustomerIDValue.setText(CustomerCollection.getCustomerIDByOrder(order).getCustomerID());
                     labelSizeValue.setText(order.getTSize());
                     labelQtyValue.setText(String.format("%d", order.getQuantity()));
                     labelAmountValue.setText(String.format("%.2f", order.calculateAmount()));
                     labelStatusValue.setText(order.getStatuString().toUpperCase());
+
+                    currentOrder = CustomerCollection.getOrderByID(input); // Because reference for customerArray gets
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid Order ID ! ", "Error", JOptionPane.ERROR_MESSAGE);

@@ -32,6 +32,7 @@ class FileManager {
             }
 
             writer.flush();
+            writer.close();
 
             return true;
 
