@@ -12,7 +12,7 @@ class OrdersByAmountForm extends JFrame {
     private DefaultTableModel dtm;
     private JTable table; 
 
-    OrdersByAmountForm(ReportForm reportForm, CustomerCollection customerCollection) {
+    OrdersByAmountForm(ReportForm reportForm) {
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 500);
@@ -44,7 +44,7 @@ class OrdersByAmountForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] ordersByAmountRows = customerCollection.getOrderByAmountRows();
+        String[][] ordersByAmountRows = CustomerCollection.getOrderByAmountRows();
 
         table.setRowHeight(40);
 

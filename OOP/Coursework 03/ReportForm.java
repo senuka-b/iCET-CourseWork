@@ -19,7 +19,7 @@ class ReportForm extends JFrame {
 
     private ReportForm reportForm;
 
-    ReportForm(HomeForm homeForm, CustomerCollection customerCollection) {
+    ReportForm(HomeForm homeForm) {
 
         reportForm = this;
 
@@ -112,35 +112,35 @@ class ReportForm extends JFrame {
         buttonBestInCustomers.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new BestInCustomersForm(reportForm, customerCollection).setVisible(true);
+                new BestInCustomersForm(reportForm).setVisible(true);
             }
         });
 
         buttonViewCustomers.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new ViewCustomersForm(reportForm, customerCollection).setVisible(true);
+                new ViewCustomersForm(reportForm).setVisible(true);
             }
         });
 
         buttonAllCustomers.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new AllCustomersForm(reportForm, customerCollection).setVisible(true);
+                new AllCustomersForm(reportForm).setVisible(true);
             }
         });
 
         buttonByQty.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new CategorizedByQTYForm(reportForm, customerCollection).setVisible(true);
+                new CategorizedByQTYForm(reportForm).setVisible(true);
             }
         });
 
         buttonByAmount.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new CategorizedByAmountForm(reportForm, customerCollection).setVisible(true);
+                new CategorizedByAmountForm(reportForm).setVisible(true);
             }
         });
 
@@ -148,14 +148,14 @@ class ReportForm extends JFrame {
 
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new AllOrdersForm(reportForm, customerCollection).setVisible(true);
+                new AllOrdersForm(reportForm).setVisible(true);
             }
         });
 
         buttonOrdersByAmount.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new OrdersByAmountForm(reportForm, customerCollection).setVisible(true);
+                new OrdersByAmountForm(reportForm).setVisible(true);
             }
         });
 

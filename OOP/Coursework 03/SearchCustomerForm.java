@@ -20,12 +20,9 @@ class SearchCustomerForm extends JFrame{
     private JLabel labelTotal;
     private JLabel labelTotalValue;
 
-    private CustomerCollection customerCollection;
 
-    SearchCustomerForm(HomeForm homeForm, CustomerCollection customerCollection) {
-        this.customerCollection = customerCollection;
+    SearchCustomerForm(HomeForm homeForm) {
 
-        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 500);
         //setMinimumSize(new Dimension(getSize().width + 50, getSize().height + 30)); 
@@ -118,9 +115,9 @@ class SearchCustomerForm extends JFrame{
            public void actionPerformed(ActionEvent evt) {
                 String input = textFieldCustomerID.getText();
 
-                if (Customer.isValidCustomerID(input) && Customer.isExists(customerCollection.getCustomers(), input)) {
+                if (Customer.isValidCustomerID(input) && Customer.isExists(CustomerCollection.getCustomers(), input)) {
 
-                    String[][] searchCustomerRows = customerCollection.getSearchCustomerRows(input);
+                    String[][] searchCustomerRows = CustomerCollection.getSearchCustomerRows(input);
 
                     int rowHeight = subCenterPanel.getHeight() / searchCustomerRows.length - 20;
                     tableCustomer.setRowHeight(rowHeight);
@@ -130,7 +127,7 @@ class SearchCustomerForm extends JFrame{
                         dtm.addRow(row);
                     }
 
-                    labelTotalValue.setText(String.format("%.2f",customerCollection.getCustomerTotalAmount(input)));
+                    labelTotalValue.setText(String.format("%.2f", CustomerCollection.getCustomerTotalAmount(input)));
 
 
                 } else {

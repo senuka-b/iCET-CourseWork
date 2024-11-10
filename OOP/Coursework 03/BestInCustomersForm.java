@@ -12,7 +12,7 @@ class BestInCustomersForm extends JFrame {
     private DefaultTableModel dtm;
     private JTable table; 
 
-    BestInCustomersForm(ReportForm reportForm, CustomerCollection customerCollection) {
+    BestInCustomersForm(ReportForm reportForm) {
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 500);
@@ -43,7 +43,7 @@ class BestInCustomersForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] bestInCustomersRow = customerCollection.getBestInCustomersRows();
+        String[][] bestInCustomersRow = CustomerCollection.getBestInCustomersRows();
 
         table.setRowHeight(40);
 

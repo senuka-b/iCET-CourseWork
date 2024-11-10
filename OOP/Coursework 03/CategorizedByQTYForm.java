@@ -12,7 +12,7 @@ class CategorizedByQTYForm extends JFrame {
     private DefaultTableModel dtm;
     private JTable table; 
 
-    CategorizedByQTYForm(ReportForm reportForm, CustomerCollection customerCollection) {
+    CategorizedByQTYForm(ReportForm reportForm) {
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(550, 430);
@@ -43,7 +43,7 @@ class CategorizedByQTYForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] categorizedByQTYRows = customerCollection.getOrdersCategorizedByQTYRows();
+        String[][] categorizedByQTYRows = CustomerCollection.getOrdersCategorizedByQTYRows();
 
         table.setRowHeight(40);
 

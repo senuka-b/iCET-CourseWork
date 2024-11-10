@@ -24,13 +24,11 @@ class DeleteOrderForm extends JFrame {
     private JButton buttonBack;
     private JButton buttonSearch;
 
-    private CustomerCollection customerCollection;
 
     private Order currentOrder;
 
-    DeleteOrderForm(HomeForm homeForm, CustomerCollection customerCollection) {
+    DeleteOrderForm(HomeForm homeForm) {
 
-        this.customerCollection = customerCollection;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 520);
@@ -155,7 +153,7 @@ class DeleteOrderForm extends JFrame {
 
                 switch (choice) {
                     case 0:
-                        customerCollection.deleteOrder(currentOrder);
+                        CustomerCollection.deleteOrder(currentOrder);
 
                         textFieldOrderID.setText("");
 
@@ -184,15 +182,15 @@ class DeleteOrderForm extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 String input = textFieldOrderID.getText();
 
-                if (Order.isValidOrderID(input) && Order.isExists(customerCollection.getCustomers(), input)) {
+                if (Order.isValidOrderID(input) && Order.isExists(CustomerCollection.getCustomers(), input)) {
 
-                    Order order = customerCollection.getOrderByID(input);
+                    Order order = CustomerCollection.getOrderByID(input);
                     currentOrder = order;
 
                     buttonDelete.setEnabled(true);
                     buttonDelete.setContentAreaFilled(true);
 
-                    labelCustomerIDValue.setText(customerCollection.getCustomerIDByOrder(order).getCustomerID());
+                    labelCustomerIDValue.setText(CustomerCollection.getCustomerIDByOrder(order).getCustomerID());
                     labelSizeValue.setText(order.getTSize());
                     labelQtyValue.setText(String.format("%d", order.getQuantity()));
                     labelAmountValue.setText(String.format("%.2f", order.calculateAmount()));

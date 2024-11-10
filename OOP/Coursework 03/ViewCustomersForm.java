@@ -12,7 +12,7 @@ class ViewCustomersForm extends JFrame {
     private DefaultTableModel dtm;
     private JTable table; 
 
-    ViewCustomersForm(ReportForm reportForm, CustomerCollection customerCollection) {
+    ViewCustomersForm(ReportForm reportForm) {
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 500);
@@ -43,7 +43,7 @@ class ViewCustomersForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] viewCustomersRow = customerCollection.getViewCustomersRows();
+        String[][] viewCustomersRow = CustomerCollection.getViewCustomersRows();
 
         table.setRowHeight(40);
 

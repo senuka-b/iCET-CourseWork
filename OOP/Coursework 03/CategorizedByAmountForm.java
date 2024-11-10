@@ -12,7 +12,7 @@ class CategorizedByAmountForm extends JFrame {
     private DefaultTableModel dtm;
     private JTable table; 
 
-    CategorizedByAmountForm(ReportForm reportForm, CustomerCollection customerCollection) {
+    CategorizedByAmountForm(ReportForm reportForm) {
          
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(550, 430);
@@ -43,7 +43,7 @@ class CategorizedByAmountForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] categorizedByAmountRows = customerCollection.getOrdersCategorizedByAmountRows();
+        String[][] categorizedByAmountRows = CustomerCollection.getOrdersCategorizedByAmountRows();
 
         table.setRowHeight(40);
 

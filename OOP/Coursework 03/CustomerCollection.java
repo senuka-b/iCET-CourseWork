@@ -22,8 +22,8 @@ class CustomerCollection {
 
     }
 
-    public Customer[] getCustomers() {
-        return customerArray;
+    public static Customer[] getCustomers() {
+        return parseToCustomerObjects();
     }
 
     public static Order getLastOrder() {
@@ -86,52 +86,52 @@ class CustomerCollection {
         
     }
 
-    public String[][] getSearchCustomerRows(String customerID) {
-        return Customer.getSearchCustomerRows(customerArray, customerID);
+    public static String[][] getSearchCustomerRows(String customerID) {
+        return Customer.getSearchCustomerRows(getCustomers(), customerID);
     }
 
-    public double getCustomerTotalAmount(String customerID) {
-        return Customer.getCustomerTotalAmount(customerArray, customerID);
+    public static double getCustomerTotalAmount(String customerID) {
+        return Customer.getCustomerTotalAmount(getCustomers(), customerID);
     }
 
-    public Customer getCustomerIDByOrder(Order order) {
-        return Customer.getCustomerByOrder(order, customerArray);
+    public static Customer getCustomerIDByOrder(Order order) {
+        return Customer.getCustomerByOrder(order, getCustomers());
     }
 
-    public Order getOrderByID(String input) {
-        return Order.getOrderByID(input, customerArray);
+    public static Order getOrderByID(String input) {
+        return Order.getOrderByID(input, getCustomers());
     }
 
-    public String[][] getBestInCustomersRows() {
-        return Customer.getBestInCustomersRows(customerArray);
+    public static String[][] getBestInCustomersRows() {
+        return Customer.getBestInCustomersRows(getCustomers());
     }
 
-    public String[][] getViewCustomersRows() {
-        return Customer.getViewCustomerRows(customerArray);
+    public static String[][] getViewCustomersRows() {
+        return Customer.getViewCustomerRows(getCustomers());
     }
 
-    public String[][] getAllCustomerReportRows() {
-        return Customer.getAllCustomerReportRows(customerArray);
+    public static String[][] getAllCustomerReportRows() {
+        return Customer.getAllCustomerReportRows(getCustomers());
     }
 
-    public String[][] getOrdersCategorizedByQTYRows() {
-        return Order.getOrdersCategorizedByQTYRows(customerArray);
+    public static String[][] getOrdersCategorizedByQTYRows() {
+        return Order.getOrdersCategorizedByQTYRows(getCustomers());
     }
 
-    public String[][] getOrdersCategorizedByAmountRows() {
-        return Order.getOrdersCategorizedByAmountRows(customerArray);
+    public static String[][] getOrdersCategorizedByAmountRows() {
+        return Order.getOrdersCategorizedByAmountRows(getCustomers());
     }
 
-    public String[][] getAllOrderRows() {
-        return Order.getAllOrderRows(customerArray);
+    public static String[][] getAllOrderRows() {
+        return Order.getAllOrderRows(getCustomers());
     }
 
-    public String[][] getOrderByAmountRows() {
-        return Order.getOrderByAmountRows(customerArray);
+    public static String[][] getOrderByAmountRows() {
+        return Order.getOrderByAmountRows(getCustomers());
     }
 
-    public boolean deleteOrder(Order order) {
-        return Order.deleteOrder(customerArray, order);
+    public static boolean deleteOrder(Order order) {
+        return Order.deleteOrder(getCustomers(), order);
     }
 
 }

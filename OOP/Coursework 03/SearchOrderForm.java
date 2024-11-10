@@ -24,11 +24,9 @@ class SearchOrderForm extends JFrame {
     private JButton buttonBack;
     private JButton buttonSearch;
 
-    private CustomerCollection customerCollection;
 
-    SearchOrderForm(HomeForm homeForm, CustomerCollection customerCollection) {
+    SearchOrderForm(HomeForm homeForm) {
 
-        this.customerCollection = customerCollection;
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(650, 520);
@@ -130,11 +128,11 @@ class SearchOrderForm extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 String input = textFieldOrderID.getText();
 
-                if (Order.isValidOrderID(input) && Order.isExists(customerCollection.getCustomers(), input)) {
+                if (Order.isValidOrderID(input) && Order.isExists(CustomerCollection.getCustomers(), input)) {
 
-                    Order order = customerCollection.getOrderByID(input);
+                    Order order = CustomerCollection.getOrderByID(input);
 
-                    labelCustomerIDValue.setText(customerCollection.getCustomerIDByOrder(order).getCustomerID());
+                    labelCustomerIDValue.setText(CustomerCollection.getCustomerIDByOrder(order).getCustomerID());
                     labelSizeValue.setText(order.getTSize());
                     labelQtyValue.setText(String.format("%d", order.getQuantity()));
                     labelAmountValue.setText(String.format("%.2f", order.calculateAmount()));

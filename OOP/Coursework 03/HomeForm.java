@@ -24,7 +24,7 @@ class HomeForm extends JFrame {
 
     private HomeForm ref;
 
-    HomeForm(CustomerCollection customerCollection) {
+    HomeForm() {
 
         ref = this; // Home Form reference variable
 
@@ -120,13 +120,13 @@ class HomeForm extends JFrame {
                 switch (selection) {
                     case 0:
                         setVisible(false);
-                        new SearchCustomerForm(ref, customerCollection).setVisible(true);
+                        new SearchCustomerForm(ref).setVisible(true);
 
                         break;
 
                     case 1:
                         setVisible(false);
-                        new SearchOrderForm(ref, customerCollection).setVisible(true);
+                        new SearchOrderForm(ref).setVisible(true);
 
                         break;
                
@@ -139,7 +139,7 @@ class HomeForm extends JFrame {
         buttonReport.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new ReportForm(ref, customerCollection).setVisible(true);
+                new ReportForm(ref).setVisible(true);
 
             }
         });
@@ -147,14 +147,14 @@ class HomeForm extends JFrame {
         buttonStatus.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new ChangeStatusForm(ref, customerCollection).setVisible(true);
+                new ChangeStatusForm(ref).setVisible(true);
             }
         });
 
         buttonDelete.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 setVisible(false);
-                new DeleteOrderForm(ref, customerCollection).setVisible(true);
+                new DeleteOrderForm(ref).setVisible(true);
             }
         });
 
