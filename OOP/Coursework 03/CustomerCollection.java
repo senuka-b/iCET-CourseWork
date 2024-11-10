@@ -29,48 +29,57 @@ class CustomerCollection {
     public static Order getLastOrder() {
         customerArray = parseToCustomerObjects();
 
-        Order[] lastCustomerOrders = customerArray[customerArray.length-1].getOrders();
+        if (customerArray.length == 0) return null;
 
-        return lastCustomerOrders[lastCustomerOrders.length-1];
+        Order lastOrder = customerArray[0].getOrders()[0];
+        for (Customer customer : customerArray) {
+            for (Order order : customer.getOrders()) {
+                if (order.getOrderNumber() >= lastOrder.getOrderNumber()) {
+                    lastOrder = order;
+                }
+            }
+        }
+
+        return lastOrder;
     }
 
     private static Customer[] parseToCustomerObjects() {
         String[] customerStrings = FileManager.getCustomers();
 
+        if (customerStrings == null) return new Customer[0];
+
         Customer[] customersArray = new Customer[customerStrings.length];
-        if (customerStrings == null) {
-            return new Customer[0];
-        } else {
-            for (int j=0; j < customerStrings.length; j++) {
-                String[] customerStringsArray = customerStrings[j].split(":"); // [custoemrID, order1_order2_...]
+        
+        for (int j=0; j < customerStrings.length; j++) {
+            String[] customerStringsArray = customerStrings[j].split(":"); // [custoemrID, order1_order2_...]
 
-                System.out.println("customerStringsArray " + Arrays.toString(customerStringsArray));
+            System.out.println("customerStringsArray " + Arrays.toString(customerStringsArray));
 
-                String customerID = customerStringsArray[0];
-                String ordersString = customerStringsArray[1]; // order1_order2_order_3...
+            String customerID = customerStringsArray[0];
+            String ordersString = customerStringsArray[1]; // order1_order2_order_3...
 
-                System.out.println("customerID: "+customerID);
+            System.out.println("customerID: "+customerID);
 
-                String[] orderStringValues = ordersString.split("_");
+            String[] orderStringValues = ordersString.split("_");
 
-                Order[] orderArray = new Order[orderStringValues.length];
+            Order[] orderArray = new Order[orderStringValues.length];
 
-                for (int i = 0; i < orderStringValues.length; i++) {
+            for (int i = 0; i < orderStringValues.length; i++) {
 
-                    String[] currentOrderValues = orderStringValues[i].split(",");
+                String[] currentOrderValues = orderStringValues[i].split(",");
 
-                    orderArray[i] = new Order(
-                        Order.getOrderNumberByID(currentOrderValues[0]),
-                        currentOrderValues[1],
-                        Integer.parseInt(currentOrderValues[2]),
-                        Integer.parseInt(currentOrderValues[3]));
+                orderArray[i] = new Order(
+                    Order.getOrderNumberByID(currentOrderValues[0]),
+                    currentOrderValues[1],
+                    Integer.parseInt(currentOrderValues[2]),
+                    Integer.parseInt(currentOrderValues[3]));
 
-                }
-
-                customersArray[j] = new Customer(customerID, orderArray);
-                
             }
-        }
+
+            customersArray[j] = new Customer(customerID, orderArray);
+            
+        
+    }
 
         return customersArray;
     }
@@ -78,7 +87,7 @@ class CustomerCollection {
     public static boolean placeOrder(String customerID, String tSize, int qty) {
 
 
-        Order newOrder = new Order(getLastOrder().getOrderNumber()+1, tSize, qty);
+        Order newOrder = new Order(getLastOrder() != null ? getLastOrder().getOrderNumber()+1 : 1, tSize, qty);
 
         customerArray = Customer.placeOrder(customerArray, newOrder, customerID);
 

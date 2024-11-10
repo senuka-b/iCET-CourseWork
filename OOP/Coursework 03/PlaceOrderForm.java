@@ -225,7 +225,7 @@ class PlaceOrderForm extends JFrame {
     private void generateOrderID() {
         labelOrderIDValue.setText(
 
-            Order.createOrderString(CustomerCollection.getLastOrder().getOrderNumber()+1)
+            Order.createOrderString(CustomerCollection.getLastOrder() != null ? CustomerCollection.getLastOrder().getOrderNumber()+1 : 1)
         );
     }
 
