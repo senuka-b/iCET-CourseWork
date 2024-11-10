@@ -184,11 +184,7 @@ class ChangeStatusForm extends JFrame {
 
                 if (Order.isValidOrderID(input) && Order.isExists(CustomerCollection.getCustomers(), input)) {
                     
-                    Order order = CustomerCollection.getOrderByID(input);
-                    
-                    System.out.println("ORDER YES");
-
-                    System.out.println("ORDER YES YES" + order.getStatuString());               
+                    Order order = CustomerCollection.getOrderByID(input);        
 
                     boolean isOrderDelievered = order.getStatuString().equals("delievered");
                     
