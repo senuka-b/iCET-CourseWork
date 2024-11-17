@@ -115,9 +115,9 @@ class SearchCustomerForm extends JFrame{
            public void actionPerformed(ActionEvent evt) {
                 String input = textFieldCustomerID.getText();
 
-                if (Customer.isValidCustomerID(input) && Customer.isExists(CustomerCollection.getCustomers(), input)) {
+                if (CustomerController.isValidCustomerID(input) && CustomerController.isExistsCustomer(input)) {
 
-                    String[][] searchCustomerRows = CustomerCollection.getSearchCustomerRows(input);
+                    String[][] searchCustomerRows = CustomerController.getSearchCustomerRows(input);
 
                     int rowHeight = subCenterPanel.getHeight() / searchCustomerRows.length - 20;
                     tableCustomer.setRowHeight(rowHeight);
@@ -127,7 +127,7 @@ class SearchCustomerForm extends JFrame{
                         dtm.addRow(row);
                     }
 
-                    labelTotalValue.setText(String.format("%.2f", CustomerCollection.getCustomerTotalAmount(input)));
+                    labelTotalValue.setText(String.format("%.2f", CustomerController.getCustomerTotalAmount(input)));
 
 
                 } else {

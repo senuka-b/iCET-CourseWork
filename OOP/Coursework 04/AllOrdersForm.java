@@ -44,7 +44,7 @@ class AllOrdersForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] allOrderRows = CustomerCollection.getAllOrderRows();
+        String[][] allOrderRows = CustomerController.getAllOrderRows();
 
         table.setRowHeight(40);
 

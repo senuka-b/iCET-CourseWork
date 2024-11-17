@@ -106,6 +106,10 @@ class List {
         return -1;
     }
 
+    public boolean isExists(Customer customer) {
+        return search(customer) != -1;
+    }
+
     public Customer remove(int index) {
 
         if (isEmpty()) return null;
@@ -168,15 +172,32 @@ class List {
         String str = "[";
 
         while (temp != null) {
-            str += temp.customer.toString() + "| ";
+            str += temp.customer.toString() + " -- ";
             temp = temp.next;
         }
 
-        str += "\b\b]";
+        str += "\b\b\b]";
 
         return str;
 
 
+    }
+
+    public Customer[] toArray() {
+        int length = size();
+        Customer[] array = new Customer[length];
+
+        Node tempNode = start;
+        for (int i = 0; i < array.length; i++) {
+            array[i] = tempNode.customer;
+            tempNode = tempNode.next;
+        }
+
+        return array;
+    }
+
+    public void printList() {
+        System.out.println(toString());
     }
 
 }

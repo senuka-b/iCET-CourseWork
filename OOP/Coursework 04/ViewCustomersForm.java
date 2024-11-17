@@ -43,7 +43,7 @@ class ViewCustomersForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] viewCustomersRow = CustomerCollection.getViewCustomersRows();
+        String[][] viewCustomersRow = CustomerController.getViewCustomerRows();
 
         table.setRowHeight(40);
 

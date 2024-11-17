@@ -44,7 +44,7 @@ class OrdersByAmountForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] ordersByAmountRows = CustomerCollection.getOrderByAmountRows();
+        String[][] ordersByAmountRows = CustomerController.getOrderByAmountRows();
 
         table.setRowHeight(40);
 

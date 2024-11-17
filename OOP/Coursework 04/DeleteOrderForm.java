@@ -153,10 +153,9 @@ class DeleteOrderForm extends JFrame {
 
                 switch (choice) {
                     case 0:
-                        CustomerCollection.deleteOrder(currentOrder);
+                        CustomerController.deleteOrder(currentOrder);
 
                         textFieldOrderID.setText("");
-
                         labelCustomerIDValue.setText("");
                         labelSizeValue.setText("");
                         labelQtyValue.setText("");
@@ -182,15 +181,15 @@ class DeleteOrderForm extends JFrame {
             public void actionPerformed(ActionEvent event) {
                 String input = textFieldOrderID.getText();
 
-                if (Order.isValidOrderID(input) && Order.isExists(CustomerCollection.getCustomers(), input)) {
+                if (CustomerController.isValidOrderID(input) && CustomerController.isExistsOrder(input)) {
 
-                    Order order = CustomerCollection.getOrderByID(input);
+                    Order order = CustomerController.getOrderByID(input);
                     currentOrder = order;
 
                     buttonDelete.setEnabled(true);
                     buttonDelete.setContentAreaFilled(true);
 
-                    labelCustomerIDValue.setText(CustomerCollection.getCustomerIDByOrder(order).getCustomerID());
+                    labelCustomerIDValue.setText(CustomerController.getCustomerByOrder(order).getCustomerID());
                     labelSizeValue.setText(order.getTSize());
                     labelQtyValue.setText(String.format("%d", order.getQuantity()));
                     labelAmountValue.setText(String.format("%.2f", order.calculateAmount()));

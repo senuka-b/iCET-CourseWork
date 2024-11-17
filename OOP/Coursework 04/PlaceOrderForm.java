@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.*;
 import java.awt.event.*;
-import java.util.Arrays;
 
 class PlaceOrderForm extends JFrame {
 
@@ -133,7 +132,7 @@ class PlaceOrderForm extends JFrame {
             public void keyReleased(KeyEvent event) {
                 String input = textFieldCustomerID.getText();
                 
-                isValidCustomerID = Customer.isValidCustomerID(input);
+                isValidCustomerID = CustomerController.isValidCustomerID(input);
 
                 setAmount();
             }
@@ -146,7 +145,7 @@ class PlaceOrderForm extends JFrame {
             public void keyReleased(KeyEvent event) {
                 String input = textFieldSize.getText();
                 
-                isValidSize = Order.isValidSize(input);
+                isValidSize = CustomerController.isValidSize(input);
 
                 setAmount();
             }
@@ -168,7 +167,7 @@ class PlaceOrderForm extends JFrame {
                     }
                 }
                 
-                isValidQty = Order.isValidQty(input);
+                isValidQty = CustomerController.isValidQty(input);
 
                 setAmount();
             }
@@ -180,7 +179,7 @@ class PlaceOrderForm extends JFrame {
 
                 if (isValidCustomerID && isValidQty && isValidSize) {
 
-                    boolean isOrderPlaced = CustomerCollection.placeOrder(
+                    boolean isOrderPlaced = CustomerController.placeOrder(
                         textFieldCustomerID.getText(),
                         textFieldSize.getText(),
                         Integer.parseInt(textFieldQty.getText())
@@ -225,7 +224,7 @@ class PlaceOrderForm extends JFrame {
     private void generateOrderID() {
         labelOrderIDValue.setText(
 
-            Order.createOrderString(CustomerCollection.getLastOrder() != null ? CustomerCollection.getLastOrder().getOrderNumber()+1 : 1)
+            CustomerController.createOrderString(CustomerController.getLastOrder() != null ? CustomerController.getLastOrder().getOrderNumber()+1 : 1)
         );
     }
 
@@ -275,7 +274,7 @@ class PlaceOrderForm extends JFrame {
             labelAmount.setFont(new Font(null, Font.BOLD, 20));
             labelAmountValue.setForeground(Color.BLACK);
 
-            double amount = Order.calculateAmount(textFieldSize.getText(), Integer.parseInt(textFieldQty.getText()));
+            double amount = CustomerController.calculateAmount(textFieldSize.getText(), Integer.parseInt(textFieldQty.getText()));
 
             labelAmountValue.setText(String.format("%.2f", amount));
         }

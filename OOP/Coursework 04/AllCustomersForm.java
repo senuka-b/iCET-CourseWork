@@ -50,7 +50,7 @@ class AllCustomersForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] allCustomerReportRows = CustomerCollection.getAllCustomerReportRows();
+        String[][] allCustomerReportRows = CustomerController.getAllCustomerReportRows();
 
         table.setRowHeight(40);
 

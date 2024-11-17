@@ -43,7 +43,7 @@ class CategorizedByAmountForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] categorizedByAmountRows = CustomerCollection.getOrdersCategorizedByAmountRows();
+        String[][] categorizedByAmountRows = CustomerController.getOrdersCategorizedByAmountRows();
 
         table.setRowHeight(40);
 

@@ -43,7 +43,7 @@ class BestInCustomersForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] bestInCustomersRow = CustomerCollection.getBestInCustomersRows();
+        String[][] bestInCustomersRow = CustomerController.getBestInCustomersRows();
 
         table.setRowHeight(40);
 

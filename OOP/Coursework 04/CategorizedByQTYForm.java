@@ -43,7 +43,7 @@ class CategorizedByQTYForm extends JFrame {
         add("North", buttonBackPanel);
         add("Center", tablePanel);
 
-        String[][] categorizedByQTYRows = CustomerCollection.getOrdersCategorizedByQTYRows();
+        String[][] categorizedByQTYRows = CustomerController.getOrdersCategorizedByQTYRows();
 
         table.setRowHeight(40);
 
